@@ -1,5 +1,5 @@
 import React from 'react'
-import Routes, { Route } from "react-router-dom"
+import { Route,Routes } from "react-router-dom"
 import App from '../App'
 import Leaderboard from '../Pages/Leaderboard/Leaderboard'
 import SignIn from '../Pages/SignIn/SignIn'
