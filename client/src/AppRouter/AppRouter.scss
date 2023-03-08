@@ -1,5 +1,7 @@
-
+@import "../Colors/__Colors.scss";
 
 .pages-container {
     padding-top: 70px;
+    background-color: $otherLightBrown;
+    height:100%;
 }
