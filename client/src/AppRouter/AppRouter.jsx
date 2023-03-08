@@ -1,10 +1,10 @@
 import React from 'react'
 import Routes, { Route } from "react-router-dom"
-import App from '../src/App'
-import Leaderboard from '../src/Pages/Leaderboard/Leaderboard'
-import SignIn from '../src/Pages/SignIn/SignIn'
-import SignUp from '../src/Pages/SignUp/SignUp'
-import Social from '../src/Pages/Social/Social'
+import App from '../App'
+import Leaderboard from '../Pages/Leaderboard/Leaderboard'
+import SignIn from '../Pages/SignIn/SignIn'
+import SignUp from '../Pages/SignUp/SignUp'
+import Social from '../Pages/Social/Social'
 function AppRouter() {
   return (
  <Routes>
