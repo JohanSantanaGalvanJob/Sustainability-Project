@@ -20,8 +20,8 @@ function AppRouter() {
           <Route path='/signIn' element={<SignIn />}></Route>
           <Route path='/leaderboard' element={<Leaderboard />}></Route>
           <Route path='/social' element={<Social />}></Route>
-          <Route path='/Categories' element={<Social />}></Route>
-          <Route path='/Profile' element={<Social />}></Route>
+          <Route path='/categories' element={<Categories />}></Route>
+          <Route path='/profile' element={<Profile />}></Route>
     </Routes>
  </div>
   )
