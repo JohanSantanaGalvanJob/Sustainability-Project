@@ -5,10 +5,10 @@ function AppRouter() {
   return (
  <Routes>
     <Route path='/' element={<App />}></Route>
-    <Route path='/' element={<App />}></Route>
-    <Route path='/' element={<App />}></Route>
-    <Route path='/' element={<App />}></Route>
-    <Route path='/' element={<App />}></Route>
+    <Route path='/signUp' element={<App />}></Route>
+    <Route path='/signIn' element={<App />}></Route>
+    <Route path='/leaderboard' element={<App />}></Route>
+    <Route path='/social' element={<App />}></Route>
  </Routes>
   )
 }
