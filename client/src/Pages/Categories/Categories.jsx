@@ -2,6 +2,7 @@
 
 
 
+
 const Categories = () => {
     return (
         <div>
