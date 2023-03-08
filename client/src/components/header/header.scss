@@ -1,4 +1,4 @@
-
+@import '../../Fonts/_Fonts.scss';
 
 .header-container {
     display: flex;
@@ -9,6 +9,7 @@
         background-color: #9ED6FF;
         display: flex;
         justify-content: space-between;
+        font-family: $primary;
     }  
     .logo {
         align-self: center;
