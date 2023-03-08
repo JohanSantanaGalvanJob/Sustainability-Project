@@ -9,6 +9,7 @@ import tree1 from '../../images/navtree1.svg'
 
 //components
 import HamburgerButton from '../hamburgerButton/hamburgerButton'
+import { NavLink } from 'react-router-dom'
 
 
 const Header = () => {
@@ -35,18 +36,18 @@ const Header = () => {
             transition={{duration:0.5}}
             >
                 <ul>
-                    <a href="#">
+                    <NavLink to="/">
                         <li>Home</li>
-                    </a>
-                    <a href="#">
+                    </NavLink> 
+                    <NavLink to="profile">
                         <li>Profile</li>
-                    </a>
-                    <a href="#">
+                    </NavLink>
+                    <NavLink to="categories">
                         <li>Categories</li>
-                    </a>
-                    <a href="#">
+                    </NavLink>
+                    <NavLink to="leaderboard">
                         <li>Leaderboard</li>
-                    </a>
+                    </NavLink>
                 </ul>
             </motion.nav>
         </header>
