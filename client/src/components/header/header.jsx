@@ -8,6 +8,10 @@ import tree2 from '../../images/tree2.svg'
 import tree1 from '../../images/tree1.svg'
 import tree3 from '../../images/tree3.svg'
 import logo from '../../images/logo.svg'
+import homeIcon from '../../images/iconHome.svg'
+import categoryIcon from '../../images/iconCategory.svg'
+import userIcon from '../../images/iconUser.svg'
+import leaderboardIcon from '../../images/iconLeaderboard.svg'
 
 //components
 import HamburgerButton from '../hamburgerButton/hamburgerButton'
@@ -36,19 +40,36 @@ const Header = () => {
             transition={{duration:0.5}}
             >
                 <ul>
-                    <NavLink to="/">
-                        <li>Home</li>
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="/">
+                        <div className='icon-text-container'>
+                            <img alt='home icon' src={homeIcon}/>
+                            <li>Home</li>
+                        </div>
+                        <span className='line'></span>
                     </NavLink> 
-                    <NavLink to="profile">
-                        <li>Profile</li>
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
+                        <div className='icon-text-container'>
+                            <img alt='home icon' src={categoryIcon}/>
+                            <li>Categories</li>
+                        </div>
+                        <span className='line'></span>
                     </NavLink>
-                    <NavLink to="categories">
-                        <li>Categories</li>
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="categories">
+                        <div className='icon-text-container'>
+                            <img alt='home icon' src={leaderboardIcon}/>
+                            <li>Leaderboard</li>
+                        </div>
+                        <span className='line'></span>
                     </NavLink>
-                    <NavLink to="leaderboard">
-                        <li>Leaderboard</li>
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="leaderboard">
+                        <div className='icon-text-container'>
+                            <img alt='home icon' src={userIcon}/>
+                            <li>Profile</li>
+                        </div>
+                        <span className='line'></span>
                     </NavLink>
                 </ul>
+                <button className='sign-out-btn'>Sign out</button>
             </motion.nav>
         </header>
         <img className='dirt' alt='dirt' src={navdirt}/>
