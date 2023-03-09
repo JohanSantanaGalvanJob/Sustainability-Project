@@ -1,8 +1,11 @@
 
+
+
+
 @import '../../Fonts/_Fonts.scss';
 @import '../../Colors/_Colors.scss';
 
-.sign-in-container {
+.sign-up-container {
     font-family: $primary;
     display: flex;
     flex-direction: column;
@@ -58,7 +61,7 @@
             font-family: $primary;
             font-size: 2rem;
             height: 40px;
-            width: 180px;
+            width: 220px;
             align-self: center;
             margin-top: 2rem;
             margin-bottom: 2.5rem;

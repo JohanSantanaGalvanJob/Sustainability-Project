@@ -27,19 +27,22 @@
         margin: auto;
         left: 0;
         right: 0;
-        top: 10px;
+        top: 14px;
         .tree1 {
-         
+         height: 60px;
+         width: 60px;
         }
         .tree2 {
-           
+            height: 60px;
+            width: 60px;
         }
         .tree3 {
-          
+            height: 60px;
+            width: 60px;
         }
     }
     .dirt {
-     
+      width: 100%;
       position: absolute;
       top: 60px;
     }
