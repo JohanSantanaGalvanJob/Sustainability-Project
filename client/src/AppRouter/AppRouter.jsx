@@ -22,6 +22,7 @@ function AppRouter() {
           <Route path='/social' element={<Social />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
+          <Route path='*' element={<Social />}></Route>
     </Routes>
  </div>
   )
