@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 // images
 import navdirt from '../../images/navdirt.svg'
-import tree2 from '../../images/navtree2.svg'
-import tree1 from '../../images/navtree1.svg'
+import tree2 from '../../images/tree2.svg'
+import tree1 from '../../images/tree1.svg'
+import tree3 from '../../images/tree3.svg'
+import logo from '../../images/logo.svg'
 
 //components
 import HamburgerButton from '../hamburgerButton/hamburgerButton'
@@ -18,13 +20,11 @@ const Header = () => {
     return (
         <div className='header-container'>
         <header>
-            <div className='logo'>
-                logo
-            </div>
+            <img alt='logo' className='logo' src={logo}/>
             <div className='tree-container'>
             <img alt='tree' className='tree1' src={tree1}/>
             <img alt='tree' className='tree2' src={tree2}/>
-            <img alt='tree' className='tree1' src={tree1}/>
+            <img alt='tree' className='tree3' src={tree3}/>
             </div>
             <HamburgerButton
             isHamburgerOpen={isHamburgerOpen}
