@@ -20,16 +20,16 @@ const HamburgerButton = ({isHamburgerOpen, setIsHamburgerOpen}) => {
                     y1='10'
                     y2='10'               
                     animate={isHamburgerOpen ? {rotate: 45, translateY: 10} : {rotate: 0, translateY : 0}}
-                    stroke="#404040"
-                    strokeWidth='2'
+                    stroke="#638A55"
+                    strokeWidth='3'
                     />    
                     <motion.line
                     x1='0'
                     x2='30'
                     y1='20'
                     y2='20'
-                    stroke="#404040"
-                    strokeWidth='2'
+                    stroke="#638A55"
+                    strokeWidth='3'
                     animate={isHamburgerOpen? {opacity: 0}: {opacity : 1}}                   
                     />
                     <motion.line
@@ -37,8 +37,8 @@ const HamburgerButton = ({isHamburgerOpen, setIsHamburgerOpen}) => {
                     x2='30'
                     y1='30'
                     y2='30'
-                    stroke="#404040"
-                    strokeWidth='2'
+                    stroke="#638A55"
+                    strokeWidth='3'
                     animate={isHamburgerOpen ? {rotate: -45, translateY : -10}:{rotate: 0, translateY : 0} }    
                    />
                 </motion.svg>
