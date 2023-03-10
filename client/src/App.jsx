@@ -3,13 +3,20 @@ import './App.scss'
 import React from 'react'
 import AppRouter from './AppRouter/AppRouter'
 import Header from './Components/header/header'
-import SignIn from './Pages/SignIn/SignIn'
+
+import { useState } from 'react'
 
 function App() {
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
   return (
     <div>
-      <Header/>
-      <AppRouter />
+      <Header
+      isHamburgerOpen = {isHamburgerOpen}
+      setIsHamburgerOpen = {setIsHamburgerOpen}
+      />
+      <AppRouter 
+      isHamburgerOpen = {isHamburgerOpen}
+      />
   
     </div>
   )

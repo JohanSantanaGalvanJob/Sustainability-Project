@@ -12,7 +12,7 @@ import Profile from '../Pages/Profile/Profile'
 import ItemPage from '../Pages/ItemPage/ItemPage'
 import NotFound from '../Pages/NotFound/NotFound'
 
-function AppRouter() {
+function AppRouter({isHamburgerOpen}) {
   return (
   <div className='pages-container'>
     <Routes>
@@ -23,8 +23,8 @@ function AppRouter() {
           <Route path='/social' element={<Social />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
-          <Route path='*' element={<NotFound />}></Route>
-          <Route path='/itempage' element={<ItemPage />}></Route>
+          <Route path='*' element={<Social />}></Route>
+          <Route path='/itempage' element={<ItemPage isHamburgerOpen={isHamburgerOpen} />}></Route>
     </Routes>
  </div>
   )
