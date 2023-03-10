@@ -3,13 +3,13 @@ import './AppRouter.scss'
 import React from 'react'
 
 import { Route,Routes } from "react-router-dom"
-import App from '../App'
 import Leaderboard from '../Pages/Leaderboard/Leaderboard'
 import SignIn from '../Pages/SignIn/SignIn'
 import SignUp from '../Pages/SignUp/SignUp'
 import Social from '../Pages/Social/Social'
 import Categories from '../Pages/Categories/Categories'
 import Profile from '../Pages/Profile/Profile'
+import ItemPage from '../Pages/ItemPage/ItemPage'
 
 function AppRouter() {
   return (
@@ -23,6 +23,7 @@ function AppRouter() {
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='*' element={<Social />}></Route>
+          <Route path='/itempage' element={<ItemPage />}></Route>
     </Routes>
  </div>
   )
