@@ -1,9 +1,8 @@
 const db = require("../models");
 const Post = db.posts;
 const Op = db.Sequelize.Op;
-const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage }).single('image')
+const fs = require('fs');
+const imagePath = "public/images/"
 
 // Create and Save a new Post
 exports.create = (req, res) => {
@@ -77,51 +76,37 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Create endpoint /api/bicycles/:bicycle_id for PUT
-exports.putBicycle = function (req, res) {
-    // Use the Bicycle model to find a specific bicycle
-    Bicycle.findById(req.params.bicycle_id, function (err, bicycle) {
-        if (err)
-            res.send(err);
-
-        // Update the existing bicycle 
-        bicycle.brand = req.body.brand;
-        bicycle.model = req.body.model;
-        bicycle.filename = '';
-        if (req.file) {
-            bicycle.filename = req.file.filename;
-        }
-
-        // Save the bicycle and check for errors
-        bicycle.save(function (err) {
-            if (err)
-                res.send(err);
-
-            res.json(bicycle);
-        });
-    });
-};
-
 // Update a Post by the id in the request
 exports.update = (req, res) => {
-    
+
 
     const id = req.params.id;
-    const data = req.body;
-    data.image = "hfuifhuif"
+    var filename = '';
 
+    Post.findByPk(id).then(data => {
+        filename = data.image
 
-        Post.update(data, {
+        const post = {
+            location: req.body.location,
+            image: req.file ? req.file.filename : filename,
+            userId: req.body.userId,
+            categoryId: req.body.categoryId
+        };
+
+        Post.update(post, {
             where: { id: id }
         })
             .then(num => {
                 if (num == 1) {
+                    if (req.file && (filename != "")) {
+                        fs.unlinkSync(imagePath + filename)
+                    }
                     res.send({
                         message: "Post was updated successfully."
                     });
                 } else {
                     res.send({
-                        message: `Cannot update Post with id= ${id}. Maybe Post was not found or req.body is empty!`
+                        message: `Cannot update Post with id=${id}. Maybe Post was not found or req.body is empty!`
                     });
                 }
             })
@@ -130,17 +115,36 @@ exports.update = (req, res) => {
                     message: "Error updating Post with id=" + id
                 });
             });
+
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Post with id=" + id
+            });
+        });
 };
 
 // Delete a Post with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
 
+    var filename = '';
+
+    Post.findByPk(id).then(data => {
+        filename = data.image
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving User with id=" + id
+            });
+        });
+
     Post.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
+                fs.unlinkSync(imagePath + filename)
                 res.send({
                     message: "Post was deleted successfully!"
                 });

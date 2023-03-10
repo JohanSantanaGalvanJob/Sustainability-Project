@@ -1,13 +1,15 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
+const fs = require('fs');
+const imagePath = "public/images/"
 
 // Create and Save a new User
 exports.create = (req, res) => {
-    console.log("req: ",req.body)
+    console.log("req: ", req.body)
     // Validate request
     if (!req.body.username || !req.body.email || !req.body.password || !req.body.birthdate) {
-        
+
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -79,40 +81,72 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
 
     const id = req.params.id;
-    const data = req.body
+    var filename = '';
 
-    data.image = req.file ? req.file.filename : "",
+    User.findByPk(id).then(data => {
+            filename = data.image
 
-    User.update(data, {
-        where: { id: id }
-    })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "User was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
-                });
+            const user = {
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+                birthdate: req.body.birthdate,
+                image: req.file ? req.file.filename : filename,
             }
+
+            User.update(user, {
+                where: { id: id }
+            })
+                .then(num => {
+                    if (num == 1) {
+                        if (req.file && (filename != "")) {
+                            fs.unlinkSync(imagePath + filename)
+                        }
+                        res.send({
+                            message: "User was updated successfully."
+                        });
+                    } else {
+                        res.send({
+                            message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+                        });
+                    }
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: "Error updating User with id=" + id
+                    });
+                });
+
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating User with id=" + id
+                message: "Error retrieving User with id=" + id
             });
         });
+
+   
 };
 
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
+    var filename = '';
+
+    User.findByPk(id).then(data => {
+      filename = data.image
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving User with id=" + id
+        });
+    });
 
     User.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
+                    fs.unlinkSync(imagePath + filename)
                 res.send({
                     message: "User was deleted successfully!"
                 });
@@ -135,15 +169,15 @@ exports.deleteAll = (req, res) => {
     User.destroy({
         where: {},
         truncate: false
-      })
+    })
         .then(nums => {
-          res.send({ message: `${nums} Users were deleted successfully!` });
+            res.send({ message: `${nums} Users were deleted successfully!` });
         })
         .catch(err => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while removing all Users."
-          });
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while removing all Users."
+            });
         });
 };
 
