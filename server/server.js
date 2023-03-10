@@ -28,20 +28,14 @@ db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
   });
 
-
-
-
-
-
-
-// parse requests of content-type multipart/form-data
-// app.use(upload.array()); 
-
 // User route
 require("./routes/user.routes.js")(app);
  
 // Category route
 require("./routes/category.routes.js")(app);
+
+// Post route
+require("./routes/post.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

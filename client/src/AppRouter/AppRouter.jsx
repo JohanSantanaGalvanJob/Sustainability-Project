@@ -10,6 +10,7 @@ import Social from '../Pages/Social/Social'
 import Categories from '../Pages/Categories/Categories'
 import Profile from '../Pages/Profile/Profile'
 import ItemPage from '../Pages/ItemPage/ItemPage'
+import NotFound from '../Pages/NotFound/NotFound'
 
 function AppRouter({isHamburgerOpen}) {
   return (

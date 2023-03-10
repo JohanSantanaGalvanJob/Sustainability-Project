@@ -79,8 +79,11 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
 
     const id = req.params.id;
+    const data = req.body
 
-    User.update(req.body, {
+    data.image = req.file ? req.file.filename : "",
+
+    User.update(data, {
         where: { id: id }
     })
         .then(num => {
