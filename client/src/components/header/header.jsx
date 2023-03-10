@@ -47,21 +47,21 @@ const Header = () => {
                         </div>
                         <span className='line'></span>
                     </NavLink> 
-                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="categories">
                         <div className='icon-text-container'>
                             <img alt='home icon' src={categoryIcon}/>
                             <li>Categories</li>
                         </div>
                         <span className='line'></span>
                     </NavLink>
-                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="categories">
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="leaderboard">
                         <div className='icon-text-container'>
                             <img alt='home icon' src={leaderboardIcon}/>
                             <li>Leaderboard</li>
                         </div>
                         <span className='line'></span>
                     </NavLink>
-                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="leaderboard">
+                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
                         <div className='icon-text-container'>
                             <img alt='home icon' src={userIcon}/>
                             <li>Profile</li>
