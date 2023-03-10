@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 // images
 import navdirt from '../../images/navdirt.svg'
+import navdirtTablet from '../../images/navdirtTablet.svg'
 import tree2 from '../../images/tree2.svg'
 import tree1 from '../../images/tree1.svg'
 import tree3 from '../../images/tree3.svg'
@@ -34,7 +35,7 @@ const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
             setIsHamburgerOpen={setIsHamburgerOpen}
             />
             <motion.nav 
-            className="navbar"
+            className="navbar-mobile"
             animate={isHamburgerOpen ? {x:-800}: {x : 0}}
             transition={{duration:0.5}}
             >
@@ -70,8 +71,33 @@ const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
                 </ul>
                 <button className='sign-out-btn'>Sign out</button>
             </motion.nav>
+            <nav className='navbar-tablet'>
+                <ul>
+                    <NavLink to='/'>
+                    <div className='cloud'>
+                        <li>Home</li>
+                    </div>
+                    </NavLink>
+                    <NavLink to='categories'>
+                    <div className='cloud'>
+                        <li>Categories</li>
+                    </div>    
+                    </NavLink>
+                    <NavLink to='leaderboard'>
+                        <div className='cloud'>
+                            <li>Leaderboard</li>
+                        </div>
+                    </NavLink>
+                    <NavLink to='profile'>
+                        <div className='cloud'>
+                            <li>Profile</li>
+                        </div>
+                    </NavLink>
+                </ul>
+            </nav>
         </header>
         <img className='dirt' alt='dirt' src={navdirt}/>
+        <img className='dirt-tablet' alt='dirt' src={navdirtTablet}/>
         </div>
 
     
