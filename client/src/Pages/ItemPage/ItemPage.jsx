@@ -5,16 +5,21 @@ import './ItemPage.scss'
 import stockPhoto from '../../images/restaurantStockphoto.jpg'
 
 
-const ItemPage = () => {
+const ItemPage = ({isHamburgerOpen}) => {
     return (
+        
         <section className='item-page-container'>
-            <h1>Restaurants</h1>
-            <div className='text-image-container'>
-                <img src={stockPhoto}/>
-                <div className='item-name-container'>
-                    <h2>Name</h2>
+            { !isHamburgerOpen ? (<>
+                <h1>Restaurants</h1>
+                <div className='text-image-container'>
+                    <img src={stockPhoto}/>
+                    <div>
+                        <span className='item-name-container'>
+                            <h2>Name</h2>
+                        </span>
+                    </div>
                 </div>
-            </div>
+            </>): null}
         </section>
     )
 }

@@ -18,8 +18,7 @@ import HamburgerButton from '../hamburgerButton/hamburgerButton'
 import { NavLink } from 'react-router-dom'
 
 
-const Header = () => {
-    const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
+const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
 
     return (
         <div className='header-container'>

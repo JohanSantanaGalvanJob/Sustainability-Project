@@ -11,7 +11,7 @@ import Categories from '../Pages/Categories/Categories'
 import Profile from '../Pages/Profile/Profile'
 import ItemPage from '../Pages/ItemPage/ItemPage'
 
-function AppRouter() {
+function AppRouter({isHamburgerOpen}) {
   return (
   <div className='pages-container'>
     <Routes>
@@ -23,7 +23,7 @@ function AppRouter() {
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='*' element={<Social />}></Route>
-          <Route path='/itempage' element={<ItemPage />}></Route>
+          <Route path='/itempage' element={<ItemPage isHamburgerOpen={isHamburgerOpen} />}></Route>
     </Routes>
  </div>
   )
