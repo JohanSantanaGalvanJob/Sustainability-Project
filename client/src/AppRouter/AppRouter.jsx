@@ -10,6 +10,7 @@ import Social from '../Pages/Social/Social'
 import Categories from '../Pages/Categories/Categories'
 import Profile from '../Pages/Profile/Profile'
 import ItemPage from '../Pages/ItemPage/ItemPage'
+import NotFound from '../Pages/NotFound/NotFound'
 
 function AppRouter() {
   return (
@@ -22,7 +23,7 @@ function AppRouter() {
           <Route path='/social' element={<Social />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
-          <Route path='*' element={<Social />}></Route>
+          <Route path='*' element={<NotFound />}></Route>
           <Route path='/itempage' element={<ItemPage />}></Route>
     </Routes>
  </div>
