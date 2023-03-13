@@ -1,22 +1,85 @@
 import React from 'react'
-
+import UserService from '../../Services/user.service';
+import { useState } from 'react';
 import './SignUp.scss'
 
 function SignUp() {
+
+
+  const initialUserState = {
+    id: null,
+    username: "",
+    email: "",
+    image: "",
+    password: "",
+    birthdate: undefined,
+  };
+
+  const [imgSrc, setImgSrc] = useState("https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg");
+  const [user, setUser] = useState(initialUserState);
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleInputFileChange = event => {
+
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+
+    reader.onloadend = function (e) {
+      console.log("holaaaaaaaaaaa", reader.result)
+      setImgSrc(reader.result);
+    };
+
+    console.log(url) // Would see a path?
+
+    setUser({ ...user, image: file });
+  };
+
+  const onSubmit = (event) => {
+
+    event.preventDefault();
+
+    const params = {
+      image: event.target.image.files[0],
+      username: event.target.username?.value,
+      email: event.target.email?.value,
+      password: event.target.password?.value,
+      birthdate: event.target.birthdate?.value
+    }
+
+    UserService.signUp(params).then((response) => {
+      console.log(response);
+      console.log(response.data);
+      console.log(response.data.access_token);
+      sessionStorage.setItem('token',response.data.access_token)
+    }).catch(e => {
+      console.log(e);
+    });
+
+  }
+
   return (
     <section className='sign-up-container'>
-    <h1>Sign up!</h1>
-    <h2>Please enter your details.</h2>
-    <form>
-      <label htmlFor='username'>Username</label>
-      <input name='username' placeholder='Pleace enter your username'></input>
-      <label htmlFor='email'>Email</label>
-      <input name='email' placeholder='Please enter your email'></input>
-      <label htmlFor='password'>Password</label>
-      <input name='password' placeholder='Please enter your password'></input>
-      <button className='submit-btn'>Create account</button>
-    </form>
-  </section>
+      <h1>Sign up!</h1>
+      <h2>Please enter your details.</h2>
+        <form onSubmit={onSubmit}>
+          <label htmlFor='image'>Image</label>
+          <input type='file' name='image' required onSubmit={handleInputFileChange}></input>
+          <label htmlFor='username'>Username</label>
+          <input type='text' name='username' required onSubmit={handleInputChange} placeholder='Please enter your username'></input>
+          <label htmlFor='email'>Email</label>
+          <input type='email' name='email' required onSubmit={handleInputChange} placeholder='Please enter your email'></input>
+          <label htmlFor='password'>Password</label>
+          <input type='password' name='password' required onSubmit={handleInputChange} placeholder='Please enter your password'></input>
+          <label htmlFor='birthdate'>Birth Date</label>
+          <input type='date' name='birthdate' required onSubmit={handleInputChange} placeholder='Please enter your birth date'></input>
+          <button type='submit' className='submit-btn'>Sign Up!</button>
+        </form>
+    </section>
   )
 }
 
