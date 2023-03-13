@@ -24,11 +24,6 @@ let navigate = useNavigate()
 
   const onSubmit = (event) => {
     // saveUser()
-    if (sessionStorage.getItem("token")) {
-     navigate("/newsfeed")
-     console.log(sessionStorage.getItem("token"));
-    }
-    
 
     event.preventDefault();
 
@@ -43,6 +38,11 @@ let navigate = useNavigate()
       console.log(response.data.access_token);
       sessionStorage.setItem('token',response.data.access_token)
       sessionStorage.setItem('userId', response.data.user.id)
+      if (response.data.access_token) {
+        navigate("/newsfeed")
+        console.log(sessionStorage.getItem("token"));
+       }
+       
     }).catch(e => {
       console.log(e);
     });
