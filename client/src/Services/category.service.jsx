@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-const  CategoryService  = () => {
+
 
   const getAll = () => {
     return http.get("/categories");
@@ -29,6 +29,14 @@ const  CategoryService  = () => {
   const findByTitle = (title) => {
     return http.get(`/categories?title=${title}`);
   }
-}
 
-export default CategoryService();
+  const CategoryService = {
+    getAll,
+    get,
+    create,
+    update,
+    deleteOne,
+    deleteAll,
+  }
+
+export default CategoryService;

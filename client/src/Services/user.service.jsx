@@ -1,7 +1,5 @@
 import http from "../http-common";
 
-const  UserService  = () => {
-
   const getAll = () => {
     return http.get("/users");
   }
@@ -10,12 +8,75 @@ const  UserService  = () => {
     return http.get(`/users/${id}`);
   }
 
-  const create = (data) =>  {
-    return http.post("/users", data);
+  const signUp = (data) =>  {
+
+    console.log("todo loco")
+    console.log(data)
+
+    let form = new FormData();
+    form.append('username', (data.username));
+    form.append('password',(data.password));
+    form.append('email', data.email);
+    form.append('birthdate', data.birthdate);
+    form.append('image', data.image);
+
+
+    var config = {
+        method: 'post',
+        url: 'http://'+ window.location.hostname +':8080/users',
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        data: form
+    };
+
+    return axios(config);
+  }
+  
+  const logIn = (data) =>  {
+
+    console.log("todo loco")
+    console.log(data)
+
+    let form = new FormData();
+    form.append('username', (data.username));
+    form.append('password',(data.password));
+
+    var config = {
+        method: 'post',
+        url: 'http://'+ window.location.hostname +':8080/users/signin',
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        data: form
+    };
+
+    return axios(config);
   }
 
   const update = (id, data) => {
-    return http.put(`/users/${id}`, data);
+    console.log("todo loco")
+    console.log(data)
+
+    let form = new FormData();
+    form.append('username', (data.username));
+    form.append('password',(data.password));
+    form.append('email', data.email);
+    form.append('birthdate', data.birthdate);
+    form.append('image', data.image);
+
+
+    var config = {
+        method: 'put',
+        url: `http://`+ window.location.hostname +`:8080/users/${id}`,
+        headers: {
+          'Authorization': sessionStorage.getItem("token"),
+            'Content-Type': 'multipart/form-data'
+        },
+        data: form
+    };
+
+    return axios(config);
   }
 
   const deleteOne = (id) => {
@@ -26,6 +87,15 @@ const  UserService  = () => {
     return http.delete(`/users`);
   }
   
-}
+  const UserService = {
+    getAll,
+    get,
+    signUp,
+    logIn,
+    update,
+    deleteOne,
+    deleteAll,
+
+  }
 
 export default UserService();

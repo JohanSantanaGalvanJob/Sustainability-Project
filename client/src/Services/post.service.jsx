@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-const  PostService  = () => {
+
 
   const getAll = () => {
     return http.get("/posts");
@@ -30,6 +30,14 @@ const  PostService  = () => {
   const findByTitle = (title) => {
     return http.get(`/posts?title=${title}`);
   }
-}
 
-export default PostService();
+  const PostService = {
+    getAll,
+    get,
+    create,
+    update,
+    deleteOne,
+    deleteAll,
+  }
+
+export default PostService;
