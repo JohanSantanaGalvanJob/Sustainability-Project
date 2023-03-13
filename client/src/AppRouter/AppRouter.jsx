@@ -24,7 +24,7 @@ function AppRouter({isHamburgerOpen}) {
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='*' element={<Newsfeed />}></Route>
-          <Route path='/itempage' element={<ItemPage isHamburgerOpen={isHamburgerOpen} />}></Route>
+          <Route path='/itempage/:id/:name' element={<ItemPage isHamburgerOpen={isHamburgerOpen} />}></Route>
     </Routes>
  </div>
   )

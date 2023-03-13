@@ -1,13 +1,15 @@
 import http from "../http-common";
 
-const  CategoryItemsService  = () => {
-
   const getAll = () => {
     return http.get("/categoryitems");
   }
 
   const get = (id) =>  {
     return http.get(`/categoryitems/${id}`);
+  }
+
+  const getByCategory = (categoryId) =>  {
+    return http.get(`/categoryitems/${categoryId}`);
   }
 
   const create = (data) =>  {
@@ -29,6 +31,15 @@ const  CategoryItemsService  = () => {
   const findByTitle = (title) => {
     return http.get(`/categoryitems?title=${title}`);
   }
-}
 
-export default CategoryItemsService();
+  const CategoryItemsService = {
+    getAll,
+    get,
+    getByCategory,
+    create,
+    update,
+    deleteOne,
+    deleteAll,
+  }
+
+export default CategoryItemsService;

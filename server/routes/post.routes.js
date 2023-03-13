@@ -1,11 +1,13 @@
 module.exports = app => {
     const posts = require("../controllers/post.controller.js");
     var upload = require('../multer/upload');
+    const auth = require("../controllers/auth.controller.js");
   
     var router = require("express").Router();
   
     // Create a new Post
-    router.post("/",upload.single('image'),posts.create);
+    router.post("/",upload.single('image'),auth.isAuthenticated,posts.create);
+    
   
     // Retrieve all Posts
     router.get("/", posts.findAll);
@@ -17,7 +19,7 @@ module.exports = app => {
     router.get("/:id", posts.findOne);
   
     // Update a Post with id
-    router.put("/:id", posts.update);
+    router.put("/:id",upload.single('image'), posts.update);
   
     // Delete a Post with id
     router.delete("/:id", posts.delete);

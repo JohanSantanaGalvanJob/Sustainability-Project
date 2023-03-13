@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 // images
 import navdirt from '../../images/navdirt.svg'
+import navdirtTablet from '../../images/navdirtTablet.svg'
 import tree2 from '../../images/tree2.svg'
 import tree1 from '../../images/tree1.svg'
 import tree3 from '../../images/tree3.svg'
@@ -15,15 +16,18 @@ import leaderboardIcon from '../../images/iconLeaderboard.svg'
 
 //components
 import HamburgerButton from '../hamburgerButton/hamburgerButton'
-import { NavLink } from 'react-router-dom'
-
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
-
+let navigate = useNavigate()
+function onLogout() {
+    sessionStorage.removeItem('token');
+    navigate("/signIn")
+}
     return (
         <div className='header-container'>
         <header>
-            <img alt='logo' className='logo' src={logo}/>
+            {sessionStorage.getItem('token') ? <NavLink to="/newsfeed"><img alt='logo' className='logo' src={logo}/></NavLink> : <NavLink to="/signIn"><img alt='logo' className='logo' src={logo}/></NavLink>}
             <div className='tree-container'>
             <img alt='tree' className='tree1' src={tree1}/>
             <img alt='tree' className='tree2' src={tree2}/>
@@ -34,7 +38,7 @@ const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
             setIsHamburgerOpen={setIsHamburgerOpen}
             />
             <motion.nav 
-            className="navbar"
+            className="navbar-mobile"
             animate={isHamburgerOpen ? {x:-800}: {x : 0}}
             transition={{duration:0.5}}
             >
@@ -68,10 +72,35 @@ const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
                         <span className='line'></span>
                     </NavLink>
                 </ul>
-                <button className='sign-out-btn'>Sign out</button>
+                <button onClick={onLogout} className='sign-out-btn'>Sign out</button>
             </motion.nav>
+            <nav className='navbar-tablet'>
+                <ul>
+                    <NavLink to='/'>
+                    <div className='cloud'>
+                        <li>Home</li>
+                    </div>
+                    </NavLink>
+                    <NavLink to='categories'>
+                    <div className='cloud'>
+                        <li>Categories</li>
+                    </div>    
+                    </NavLink>
+                    <NavLink to='leaderboard'>
+                        <div className='cloud'>
+                            <li>Leaderboard</li>
+                        </div>
+                    </NavLink>
+                    <NavLink to='profile'>
+                        <div className='cloud'>
+                            <li>Profile</li>
+                        </div>
+                    </NavLink>
+                </ul>
+            </nav>
         </header>
         <img className='dirt' alt='dirt' src={navdirt}/>
+        <img className='dirt-tablet' alt='dirt' src={navdirtTablet}/>
         </div>
 
     
