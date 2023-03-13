@@ -16,15 +16,18 @@ import leaderboardIcon from '../../images/iconLeaderboard.svg'
 
 //components
 import HamburgerButton from '../hamburgerButton/hamburgerButton'
-import { NavLink } from 'react-router-dom'
-
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
-
+let navigate = useNavigate()
+function onLogout() {
+    sessionStorage.removeItem('token');
+    navigate("/signIn")
+}
     return (
         <div className='header-container'>
         <header>
-            <img alt='logo' className='logo' src={logo}/>
+            {sessionStorage.getItem('token') ? <NavLink to="/newsfeed"><img alt='logo' className='logo' src={logo}/></NavLink> : <NavLink to="/signIn"><img alt='logo' className='logo' src={logo}/></NavLink>}
             <div className='tree-container'>
             <img alt='tree' className='tree1' src={tree1}/>
             <img alt='tree' className='tree2' src={tree2}/>
@@ -69,7 +72,7 @@ const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
                         <span className='line'></span>
                     </NavLink>
                 </ul>
-                <button className='sign-out-btn'>Sign out</button>
+                <button onClick={onLogout} className='sign-out-btn'>Sign out</button>
             </motion.nav>
             <nav className='navbar-tablet'>
                 <ul>
