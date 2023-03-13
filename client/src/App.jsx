@@ -2,7 +2,7 @@ import './App.scss'
 
 import React from 'react'
 import AppRouter from './AppRouter/AppRouter'
-import Header from './components/header/header'
+import Header from './Components/header/header'
 
 import { useState } from 'react'
 
