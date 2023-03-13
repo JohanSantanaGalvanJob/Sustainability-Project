@@ -77,6 +77,21 @@ exports.findOne = (req, res) => {
         });
 };
 
+exports.findByCategory = (req, res) => {
+    const categoryId = req.params.categoryId;
+  
+    CategoryItem.findAll({ where: {categoryId: categoryId} })
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving Category Items."
+        });
+      });
+  };
+
 
 
 // Update a Category Item by the id in the request

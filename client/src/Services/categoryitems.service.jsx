@@ -8,6 +8,10 @@ import http from "../http-common";
     return http.get(`/categoryitems/${id}`);
   }
 
+  const getByCategory = (categoryId) =>  {
+    return http.get(`/categoryitems/${categoryId}`);
+  }
+
   const create = (data) =>  {
     return http.post("/categoryitems", data);
   }
@@ -31,6 +35,7 @@ import http from "../http-common";
   const CategoryItemsService = {
     getAll,
     get,
+    getByCategory,
     create,
     update,
     deleteOne,

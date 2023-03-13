@@ -1,43 +1,63 @@
 import http from "../http-common";
+import axios from "axios";
 
 
+const getAll = () => {
+  return http.get("/posts");
+}
 
-  const getAll = () => {
-    return http.get("/posts");
-  }
+const get = (id) => {
+  return http.get(`/posts/${id}`);
+}
 
-  const get = (id) =>  {
-    return http.get(`/posts/${id}`);
-  }
+const create = (data) => {
+  console.log("todo loco")
+  console.log(data)
+  let userId = sessionStorage.getItem('userId')
 
-  const create = (data) =>  {
-    return http.post("/posts", data);
-    
-  }
+  let form = new FormData();
+  form.append('location', (data.location));
+  form.append('userId', userId);
+  form.append('categoryId', data.categoryId);
+  form.append('image', data.image);
 
-  const update = (id, data) => {
-    return http.put(`/posts/${id}`, data);
-  }
 
-  const deleteOne = (id) => {
-    return http.delete(`/posts/${id}`);
-  }
+  var config = {
+    method: 'post',
+    url: 'http://' + window.location.hostname + ':8080/users',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data: form
+  };
 
-  const deleteAll = () => {
-    return http.delete(`/posts`);
-  }
+  return axios(config);
 
-  const findByTitle = (title) => {
-    return http.get(`/posts?title=${title}`);
-  }
+}
 
-  const PostService = {
-    getAll,
-    get,
-    create,
-    update,
-    deleteOne,
-    deleteAll,
-  }
+const update = (id, data) => {
+  return http.put(`/posts/${id}`, data);
+}
+
+const deleteOne = (id) => {
+  return http.delete(`/posts/${id}`);
+}
+
+const deleteAll = () => {
+  return http.delete(`/posts`);
+}
+
+const findByTitle = (title) => {
+  return http.get(`/posts?title=${title}`);
+}
+
+const PostService = {
+  getAll,
+  get,
+  create,
+  update,
+  deleteOne,
+  deleteAll,
+}
 
 export default PostService;
