@@ -37,6 +37,7 @@ function SignIn() {
       console.log(response.data);
       console.log(response.data.access_token);
       sessionStorage.setItem('token',response.data.access_token)
+      sessionStorage.setItem('userId', response.data.user.id)
     }).catch(e => {
       console.log(e);
     });
