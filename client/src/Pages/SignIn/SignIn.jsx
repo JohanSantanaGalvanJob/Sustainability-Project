@@ -2,7 +2,7 @@ import React from 'react'
 import './SignIn.scss'
 import userService from '../../Services/user.service'
 import { useState } from 'react';
-
+import {NavLink} from "react-router-dom"
 
 
 
@@ -57,9 +57,9 @@ function SignIn() {
         <button type='submit' className='submit-btn'>Sign in!</button>
       </form>
       <h3>Don’t have a account yet?</h3>
-      <a>
+      <NavLink to="/signUp">
         <h4>Sign up here!</h4>
-      </a>
+      </NavLink>
     </section>
   )
 }
