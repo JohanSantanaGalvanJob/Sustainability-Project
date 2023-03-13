@@ -1,11 +1,13 @@
 module.exports = app => {
     const posts = require("../controllers/post.controller.js");
     var upload = require('../multer/upload');
+    const auth = require("../controllers/auth.controller.js");
   
     var router = require("express").Router();
   
     // Create a new Post
-    router.post("/",upload.single('image'),posts.create);
+    router.post("/",upload.single('image'),auth.isAuthenticated,posts.create);
+    
   
     // Retrieve all Posts
     router.get("/", posts.findAll);

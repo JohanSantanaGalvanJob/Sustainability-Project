@@ -25,10 +25,7 @@ const  UserService  = () => {
   const deleteAll = () => {
     return http.delete(`/users`);
   }
-
-  const findByTitle = (title) => {
-    return http.get(`/users?title=${title}`);
-  }
+  
 }
 
 export default UserService();

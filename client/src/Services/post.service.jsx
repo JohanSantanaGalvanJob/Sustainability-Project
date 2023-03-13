@@ -12,6 +12,7 @@ const  PostService  = () => {
 
   const create = (data) =>  {
     return http.post("/posts", data);
+    
   }
 
   const update = (id, data) => {

@@ -56,10 +56,10 @@ exports.isAuthenticated = (req, res, next) => {
       message: "Invalid token."
     });
 
-    User.findByPk(id)
+    User.findByPk(user.id)
       .then(data => {
         // return 401 status if the userId does not match.
-        if (!id) {
+        if (!user.id) {
           return res.status(401).json({
             error: true,
             message: "Invalid user."

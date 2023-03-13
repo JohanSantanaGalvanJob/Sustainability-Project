@@ -180,8 +180,3 @@ exports.deleteAll = (req, res) => {
             });
         });
 };
-
-// Find all published users
-exports.findAllPublished = (req, res) => {
-
-};

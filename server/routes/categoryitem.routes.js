@@ -10,9 +10,6 @@ module.exports = app => {
     // Retrieve all Category Items
     router.get("/", categoryitems.findAll);
   
-    // Retrieve all published Category Items
-    router.get("/published", categoryitems.findAllPublished);
-  
     // Retrieve a single Category Item with id
     router.get("/:id", categoryitems.findOne);
   
