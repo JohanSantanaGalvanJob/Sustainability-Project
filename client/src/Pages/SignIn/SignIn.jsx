@@ -2,12 +2,12 @@ import React from 'react'
 import './SignIn.scss'
 import userService from '../../Services/user.service'
 import { useState } from 'react';
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 
 
 
 function SignIn() {
-
+let navigate = useNavigate()
   const initialUserState = {
     id: null,
     username: "",
@@ -24,6 +24,11 @@ function SignIn() {
 
   const onSubmit = (event) => {
     // saveUser()
+    if (sessionStorage.getItem("token")) {
+     navigate("/newsfeed")
+     console.log(sessionStorage.getItem("token"));
+    }
+    
 
     event.preventDefault();
 
