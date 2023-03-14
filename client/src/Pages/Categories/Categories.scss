@@ -1,0 +1,36 @@
+@import '../../Fonts/_Fonts.scss';
+@import '../../Colors/_Colors.scss';
+
+.category-container{
+
+    height: 100vh;
+    font-family: $primary;
+    color: $white;
+    text-align: center;
+    h1{
+        font-weight: 400;
+        font-size: 3.2rem;
+        padding-bottom: 0;
+    }
+
+    article{
+        background-color: gray;
+        margin-left: 5rem;
+        margin-right: 5rem;
+        padding-top: 8.125rem;
+
+        h2{
+            font-size: 2rem;
+            font-weight: 400;
+            background-color: $transparrentBlack;
+           
+        }
+       
+    }
+
+    a{
+        text-decoration: none;
+        color: $white;
+    }
+
+}
