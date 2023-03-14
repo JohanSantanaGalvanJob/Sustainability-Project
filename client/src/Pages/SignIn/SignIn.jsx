@@ -58,7 +58,8 @@ let navigate = useNavigate()
         <label htmlFor='username'>Username</label>
         <input type='text' name='username' onSubmit={handleInputChange} placeholder='Please enter your email'></input>
         <label htmlFor='password'>Password</label>
-        <input type='password' name='password' onSubmit={handleInputChange} placeholder='Please enter your password'></input>
+        <input type='password' name='password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" 
+       title="The password must contain at least 8 characters, include numbers, capital letters and lower letters" onSubmit={handleInputChange} placeholder='Please enter your password'></input>
       
         <button type='submit' className='submit-btn'>Sign in!</button>
      

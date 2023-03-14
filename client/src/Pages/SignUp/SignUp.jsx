@@ -77,11 +77,12 @@ function SignUp() {
           <label htmlFor='image'>Image</label>
           <input type='file' name='image' required onSubmit={handleInputFileChange}></input>
           <label htmlFor='username'>Username</label>
-          <input type='text' name='username' required onSubmit={handleInputChange} placeholder='Please enter your username'></input>
+          <input type='text' name='username' pattern="^[a-zA-Z0-9_]{6,}$" title="The username must contain at least 6 characters and no special ones" required onSubmit={handleInputChange} placeholder='Please enter your username'></input>
           <label htmlFor='email'>Email</label>
           <input type='email' name='email' required onSubmit={handleInputChange} placeholder='Please enter your email'></input>
           <label htmlFor='password'>Password</label>
-          <input type='password' name='password' required onSubmit={handleInputChange} placeholder='Please enter your password'></input>
+          <input type='password' name='password' required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" 
+       title="The password must contain at least 8 characters, include numbers, capital letters and lower letters" onSubmit={handleInputChange} placeholder='Please enter your password'></input>
           <label htmlFor='birthdate'>Birth Date</label>
           <input type='date' name='birthdate' required onSubmit={handleInputChange} placeholder='Please enter your birth date'></input>
           
