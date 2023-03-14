@@ -24,7 +24,8 @@ exports.create = async (req, res) => {
         image: req.file ? req.file.filename : "",
         userId: req.body.userId,
         categoryId: req.body.categoryId,
-        categoryitemId: req.body.categoryitemId
+        categoryitemId: req.body.categoryitemId,
+        action: req.body.action,
     };
 
     const categoryItem = await CategoryItem.findByPk(post.categoryitemId);
