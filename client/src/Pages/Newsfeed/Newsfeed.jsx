@@ -39,7 +39,7 @@ function Newsfeed() {
                   <img src={post.image} alt="profile" />
                   <div>
                     
-                  <h2> {post.userId == sessionStorage.getItem('userId') ? "You " : post.user[0].username} just got 120 points for picking up trash</h2> 
+                  <h2> {post.userId == sessionStorage.getItem('userId') ? "You " : post.user.username} just got 120 points for picking up trash</h2> 
                   <p>@{!post.location ? "Unknown" : post.location}</p> 
                   </div>
                   <img src="" alt="post image" />
