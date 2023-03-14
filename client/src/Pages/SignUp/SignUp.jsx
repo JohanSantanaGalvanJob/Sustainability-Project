@@ -2,9 +2,11 @@ import React from 'react'
 import UserService from '../../Services/user.service';
 import { useState } from 'react';
 import './SignUp.scss'
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function SignUp() {
 
+  let navigate = useNavigate()
 
   const initialUserState = {
     id: null,
@@ -57,6 +59,10 @@ function SignUp() {
       console.log(response.data.access_token);
       sessionStorage.setItem('token',response.data.access_token)
       sessionStorage.setItem('userId', response.data.user.id)
+      if (response.data.access_token) {
+        navigate("/newsfeed")
+        console.log(sessionStorage.getItem("token"));
+       }
     }).catch(e => {
       console.log(e);
     });
@@ -78,7 +84,9 @@ function SignUp() {
           <input type='password' name='password' required onSubmit={handleInputChange} placeholder='Please enter your password'></input>
           <label htmlFor='birthdate'>Birth Date</label>
           <input type='date' name='birthdate' required onSubmit={handleInputChange} placeholder='Please enter your birth date'></input>
+          
           <button type='submit' className='submit-btn'>Sign Up!</button>
+          
         </form>
     </section>
   )

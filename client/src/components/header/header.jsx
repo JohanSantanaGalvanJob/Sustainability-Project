@@ -22,7 +22,9 @@ const Header = ( {isHamburgerOpen, setIsHamburgerOpen}) => {
 let navigate = useNavigate()
 function onLogout() {
     sessionStorage.removeItem('token');
-    navigate("/signIn")
+    sessionStorage.removeItem('userId');
+    navigate("/signIn");
+    window.location.reload();
 }
     return (
         <div className='header-container'>

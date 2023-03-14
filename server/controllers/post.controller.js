@@ -1,5 +1,6 @@
 const db = require("../models");
 const Post = db.posts;
+const User = db.users;
 const Op = db.Sequelize.Op;
 const fs = require('fs');
 const imagePath = "public/images/"
@@ -43,7 +44,9 @@ exports.findAll = (req, res) => {
     const userId = req.query.userId;
     var condition = userId ? { userId: { [Op.like]: `%${userId}%` } } : null;
 
-    Post.findAll({ where: condition })
+    Post.findAll({ 
+        where: condition,
+        include: [{ model: User, attributes: ['username'] }]  })
         .then(data => {
             res.send(data);
         })

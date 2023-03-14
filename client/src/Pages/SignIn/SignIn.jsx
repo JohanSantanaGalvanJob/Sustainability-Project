@@ -23,7 +23,7 @@ let navigate = useNavigate()
   };
 
   const onSubmit = (event) => {
-    // saveUser()
+   
 
     event.preventDefault();
 
@@ -59,7 +59,9 @@ let navigate = useNavigate()
         <input type='text' name='username' onSubmit={handleInputChange} placeholder='Please enter your email'></input>
         <label htmlFor='password'>Password</label>
         <input type='password' name='password' onSubmit={handleInputChange} placeholder='Please enter your password'></input>
+      
         <button type='submit' className='submit-btn'>Sign in!</button>
+     
       </form>
       <h3>Don’t have a account yet?</h3>
       <NavLink to="/signUp">
