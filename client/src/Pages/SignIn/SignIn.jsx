@@ -7,6 +7,8 @@ import {NavLink, useNavigate} from "react-router-dom"
 
 
 function SignIn() {
+  const [inputWrong, setInputWrong] = useState(false)
+
 let navigate = useNavigate()
   const initialUserState = {
     id: null,
@@ -26,11 +28,15 @@ let navigate = useNavigate()
    
 
     event.preventDefault();
-
     const params = {
       username: event.target.username?.value,
       password: event.target.password?.value,
     }
+    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+    if(!strongPassword.test(params.password)){
+      setInputWrong(true)
+    }
+
 
     userService.logIn(params).then((response) => {
       console.log(response);
@@ -48,7 +54,7 @@ let navigate = useNavigate()
     });
 
   }
-
+  console.log(inputWrong)
 
   return (
     <section className='sign-in-container'>
@@ -58,10 +64,10 @@ let navigate = useNavigate()
         <label htmlFor='username'>Username</label>
         <input type='text' name='username' onSubmit={handleInputChange} placeholder='Please enter your email'></input>
         <label htmlFor='password'>Password</label>
-        <input type='password' name='password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" 
-       title="The password must contain at least 8 characters, include numbers, capital letters and lower letters" onSubmit={handleInputChange} placeholder='Please enter your password'></input>
-      
-        <button type='submit' className='submit-btn'>Sign in!</button>
+        <input style={inputWrong ? {border : "3px solid #D60606", background: "#FFDBDB" }: null}
+        type='password' name='password'  onSubmit={handleInputChange} placeholder='Please enter your password'></input>
+        {inputWrong ? (<p className='error-text'>Password must contain at least 8 characters, numbers, capital letters and lower case letters</p>) : null}
+        <button disabled={inputWrong} type='submit' className='submit-btn'>Sign in!</button>
      
       </form>
       <h3>Don’t have a account yet?</h3>

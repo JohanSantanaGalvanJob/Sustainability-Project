@@ -6,6 +6,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 function SignUp() {
 
+  const [wrongPassword, setWrongPassword] = useState(false)
+  const [noImage, setNoImage] = useState(false)
+  const [wrongUsername, setWrongUsername] = useState(false)
+  const [wrongEmail, setWrongEmail] = useState(false)
+  const [noBirthday, setNoBirthday] = useState(false)
+
   let navigate = useNavigate()
 
   const initialUserState = {
@@ -53,6 +59,28 @@ function SignUp() {
       birthdate: event.target.birthdate?.value
     }
 
+    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+    if(!strongPassword.test(params.password)){
+      setWrongPassword(true)
+    }
+
+    if(!params.image){
+      setNoImage(true)
+    }
+
+    let testUsername = new RegExp('^[a-zA-Z0-9_]{6,}$')
+    if(!testUsername.test(params.username)){
+      setWrongUsername(true)
+    }
+
+    if(!params.email){
+      setWrongEmail(true)
+    }
+    if(!params.birthdate){
+      setNoBirthday(true)
+    }
+
+
     UserService.signUp(params).then((response) => {
       console.log(response);
       console.log(response.data);
@@ -75,19 +103,41 @@ function SignUp() {
       <h2>Please enter your details.</h2>
         <form onSubmit={onSubmit}>
           <label htmlFor='image'>Image</label>
-          <input type='file' name='image' required onSubmit={handleInputFileChange}></input>
+          <input 
+            style={noImage? {border : "3px solid #D60606", background: "#FFDBDB" }: null} 
+            type='file' name='image' onSubmit={handleInputFileChange}>
+          </input>
+          {noImage ? (<p className='error-text'>Must include a profile image</p>) : null}
           <label htmlFor='username'>Username</label>
-          <input type='text' name='username' pattern="^[a-zA-Z0-9_]{6,}$" title="The username must contain at least 6 characters and no special ones" required onSubmit={handleInputChange} placeholder='Please enter your username'></input>
+          <input 
+            style={wrongUsername? {border : "3px solid #D60606", background: "#FFDBDB" }: null}  
+            type='text' name='username' pattern="^[a-zA-Z0-9_]{6,}$"
+            onSubmit={handleInputChange} placeholder='Please enter your username'>
+          </input>
+          {wrongUsername ? (<p className='error-text'>Username must include 6 characters and no special ones</p>) : null}
           <label htmlFor='email'>Email</label>
-          <input type='email' name='email' required onSubmit={handleInputChange} placeholder='Please enter your email'></input>
+          <input 
+            type='email' name='email' 
+            style={wrongEmail? {border : "3px solid #D60606", background: "#FFDBDB" }: null} 
+            onSubmit={handleInputChange} placeholder='Please enter your email'>
+          </input>
+          {wrongEmail ? (<p className='error-text'>Must include email</p>) : null}
           <label htmlFor='password'>Password</label>
-          <input type='password' name='password' required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" 
-       title="The password must contain at least 8 characters, include numbers, capital letters and lower letters" onSubmit={handleInputChange} placeholder='Please enter your password'></input>
+          <input 
+            style={wrongPassword ? {border : "3px solid #D60606", background: "#FFDBDB" }: null} type='password' name='password' 
+            onSubmit={handleInputChange} placeholder='Please enter your password'>
+            </input>
+            {wrongPassword ? (<p className='error-text'>Password must contain at least 8 characters, numbers, capital letters and lower case letters</p>) : null}
           <label htmlFor='birthdate'>Birth Date</label>
-          <input type='date' name='birthdate' required onSubmit={handleInputChange} placeholder='Please enter your birth date'></input>
-          
-          <button type='submit' className='submit-btn'>Sign Up!</button>
-          
+          <input type='date' name='birthdate' 
+            style={noBirthday ? {border : "3px solid #D60606", background: "#FFDBDB" }: null}
+            onSubmit={handleInputChange} placeholder='Please enter your birth date'>
+          </input>
+          {noBirthday ? (<p className='error-text'>Must include birthdate</p>) : null}
+          <button 
+            disabled={wrongPassword && noImage && wrongUsername && wrongEmail && noBirthday} 
+            type='submit' className='submit-btn'>Sign Up!
+          </button>
         </form>
     </section>
   )
