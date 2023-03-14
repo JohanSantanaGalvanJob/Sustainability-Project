@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CategoryItemsService from '../../Services/categoryitems.service';
 import PostService from '../../Services/post.service';
-import UserService from '../../Services/user.service';
 import "./Newsfeed.scss"
 function Newsfeed() {
   let postData;
@@ -13,27 +12,22 @@ function Newsfeed() {
     const getEverything = () => {
         PostService.getAll().then((response) => {
             
-            postData = response.data
+          setItems({...items, posts: response.data, userData: 0})
             console.log(items);
 
         }).catch((e) => {
             console.log(e)
         });
          
-           UserService.getAll().then((response) => {
-          
-             setItems({...items, posts: postData, userData: response.data})
-         })
-         
     }
 
     useEffect(() => {
       
         getEverything();
-      console.log(items); 
+       
 
     }, []);
-    
+    console.log(items);
   return (
     <section className='newsfeed-container'>
        <h1>Newsfeed</h1>
@@ -44,7 +38,8 @@ function Newsfeed() {
                 <div>
                   <img src={post.image} alt="profile" />
                   <div>
-                  <h2>  just got 120 points for picking up trash</h2> 
+                    
+                  <h2> {post.userId == sessionStorage.getItem('userId') ? "You " : post.user[0].username} just got 120 points for picking up trash</h2> 
                   <p>@{!post.location ? "Unknown" : post.location}</p> 
                   </div>
                   <img src="" alt="post image" />
