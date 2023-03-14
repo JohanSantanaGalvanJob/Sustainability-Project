@@ -8,6 +8,7 @@ function Newsfeed() {
   const [items, setItems] = useState({
     posts: "",
     userData: ""
+    
   });
     const getEverything = () => {
         PostService.getAll().then((response) => {
@@ -30,11 +31,7 @@ function Newsfeed() {
       
         getEverything();
       console.log(items); 
-      for (let index = 0; index < items.userData.length; index++) {
-        const element = items.userData.id[index];
-        console.log(element.indexOf(1));
-        
-      }
+
     }, []);
     
   return (
@@ -47,7 +44,7 @@ function Newsfeed() {
                 <div>
                   <img src={post.image} alt="profile" />
                   <div>
-                  <h2> just got 120 points for picking up trash</h2> 
+                  <h2>  just got 120 points for picking up trash</h2> 
                   <p>@{!post.location ? "Unknown" : post.location}</p> 
                   </div>
                   <img src="" alt="post image" />
