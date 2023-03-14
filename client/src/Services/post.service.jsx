@@ -13,12 +13,21 @@ const get = (id) => {
 const create = (data) => {
   console.log("todo loco")
   console.log(data)
+<<<<<<< Updated upstream
+  let userId = sessionStorage.getItem('userId')
+
+  let form = new FormData();
+  form.append('location', (data.location));
+  form.append('userId', userId);
+  form.append('categoryId', data.categoryId);
+=======
 
   let form = new FormData();
   form.append('username', (data.username));
   form.append('password', (data.password));
   form.append('email', data.email);
   form.append('birthdate', data.birthdate);
+>>>>>>> Stashed changes
   form.append('image', data.image);
 
 
