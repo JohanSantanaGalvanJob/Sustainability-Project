@@ -80,7 +80,7 @@ function SignUp() {
       setNoBirthday(true)
     }
 
-
+    if (!wrongPassword && !noImage && !wrongUsername && !wrongEmail && !noBirthday){
     UserService.signUp(params).then((response) => {
       console.log(response);
       console.log(response.data);
@@ -94,6 +94,7 @@ function SignUp() {
     }).catch(e => {
       console.log(e);
     });
+  }
 
   }
 
@@ -135,7 +136,6 @@ function SignUp() {
           </input>
           {noBirthday ? (<p className='error-text'>Must include birthdate</p>) : null}
           <button 
-            disabled={wrongPassword && noImage && wrongUsername && wrongEmail && noBirthday} 
             type='submit' className='submit-btn'>Sign Up!
           </button>
         </form>
