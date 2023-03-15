@@ -30,7 +30,8 @@ const create = (data) => {
     method: 'post',
     url: 'http://' + window.location.hostname + ':8080/users',
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      'Authorization': sessionStorage.getItem('token')
     },
     data: form
   };
