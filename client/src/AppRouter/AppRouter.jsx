@@ -16,7 +16,7 @@ function AppRouter({isHamburgerOpen}) {
   return (
   <div className='pages-container'>
     <Routes>
-          <Route path='/' element={<SignIn />}></Route>
+          {!sessionStorage.getItem('userId') ? <Route path='/' element={<SignIn />}></Route> : <Route path='/' element={<Newsfeed />}></Route>}
           <Route path='/signUp' element={<SignUp />}></Route>
           <Route path='/signIn' element={<SignIn />}></Route>
           <Route path='/leaderboard' element={<Leaderboard />}></Route>
