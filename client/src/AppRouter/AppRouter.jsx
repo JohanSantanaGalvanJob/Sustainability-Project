@@ -22,7 +22,7 @@ function AppRouter({isHamburgerOpen}) {
           <Route path='/leaderboard' element={<Leaderboard />}></Route>
           <Route path='/Newsfeed' element={<Newsfeed />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
-          <Route path='/profile' element={<Profile />}></Route>
+          {sessionStorage.getItem('userId') ? <Route path='/profile' element={<Profile />}></Route> : null}
           <Route path='*' element={<NotFound />}></Route>
           <Route path='/itempage/:id/:name' element={<ItemPage isHamburgerOpen={isHamburgerOpen} />}></Route>
     </Routes>

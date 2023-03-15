@@ -66,15 +66,15 @@ function onLogout() {
                         </div>
                         <span className='line'></span>
                     </NavLink>
-                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
+                    {sessionStorage.getItem('userId') ? <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
                         <div className='icon-text-container'>
                             <img alt='home icon' src={userIcon}/>
                             <li>Profile</li>
                         </div>
                         <span className='line'></span>
-                    </NavLink>
+                    </NavLink> : null}
                 </ul>
-                <button onClick={onLogout} className='sign-out-btn'>Sign out</button>
+                {sessionStorage.getItem('userId') ? <button onClick={onLogout} className='sign-out-btn'>Sign out</button> : <button onClick={onLogout} className='sign-out-btn'>Sign in</button>}
             </motion.nav>
             <nav className='navbar-tablet'>
                 <ul>
