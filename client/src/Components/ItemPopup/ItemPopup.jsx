@@ -23,7 +23,7 @@ const ItemPopup = () => {
             <p>Location</p>
             <p>No plastic. Theyre cups are 100% re- cycleable. Healthy</p>
           </div>
-          <button>Post your efforts</button>
+          {sessionStorage.getItem('userId') ? <button>Post your efforts</button> : null}
         </section>
     )
 }
