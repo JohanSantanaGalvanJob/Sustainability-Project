@@ -11,6 +11,7 @@ import Categories from '../Pages/Categories/Categories'
 import Profile from '../Pages/Profile/Profile'
 import ItemPage from '../Pages/ItemPage/ItemPage'
 import NotFound from '../Pages/NotFound/NotFound'
+import PostPopup from '../Components/PostPopup/PostPopup'
 
 function AppRouter({isHamburgerOpen}) {
   return (
@@ -21,6 +22,7 @@ function AppRouter({isHamburgerOpen}) {
           <Route path='/signIn' element={<SignIn />}></Route>
           <Route path='/leaderboard' element={<Leaderboard />}></Route>
           <Route path='/Newsfeed' element={<Newsfeed />}></Route>
+          <Route path='/newpost' element={<PostPopup />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
           {sessionStorage.getItem('userId') ? <Route path='/profile' element={<Profile />}></Route> : null}
           <Route path='*' element={<NotFound />}></Route>
