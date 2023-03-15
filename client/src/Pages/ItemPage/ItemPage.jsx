@@ -25,19 +25,20 @@ const ItemPage = ({ isHamburgerOpen }) => {
     useEffect(() => {
         getCategoryItems();
     }, []);
-
+console.log(document.getElementsByClassName('popup-container')[0]);
     return (
         
-        <section className='item-page-container'>
-           
+        <section className='item-page-container' onMouseMoveCapture={() => setShowItemPopup(false)}>
             {!isHamburgerOpen ? (<>
                 <h1>{name}</h1>
                 {items.map((categoryItem, index) =>
-                <div className='text-image-container' onClick={() => setShowItemPopup(true)}>
-                    <img src={stockPhoto} />
+                
+                <div className='text-image-container'  onClick={() => setShowItemPopup(true)}>
+                    <img src={stockPhoto} onClick={() => setShowItemPopup(true)}/>
                     <div>
                         <span className='item-name-container'>
                             <h2>{categoryItem.name}</h2>
+                            
                         </span>
                     </div>
                 </div>
