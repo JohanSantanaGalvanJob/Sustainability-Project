@@ -11,7 +11,7 @@ const ItemPopup = () => {
             <p className='bee-good'>Be Good at..</p>
             <h1>Inagua Integral Nature Reserve</h1>
             <img className='item-photo' alt='attraction' src={stockphoto}/>
-            <img 
+            <img
             alt='BY DOING THIS TASK YOU ARE HELPING THE WORLD BY SUPPORTING THESE UN WOLRD GOALS >'
             className='task-tree' 
             src={taskTree}
