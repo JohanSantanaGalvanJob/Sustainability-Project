@@ -56,9 +56,10 @@ const Profile = () => {
                         <img src={urlImage + user.image} alt="profile picture" className="profilePicture" />
                         <div className="profileInfo">
                             <p className="profileBio">{user.username}</p>
+                            <p>{user.email}</p>
                             <p className="profileDetails">{user.points} points</p>
-                            <img src={leafProfileBio} alt="Leaf containing profile-bio" className="profileBioImg" />
-                            <img src={leafProfileDetails} alt="Leaf containing profile-details" className="profileDetailsImg" />
+                            {/* <img src={leafProfileBio} alt="Leaf containing profile-bio" className="profileBioImg" />
+                            <img src={leafProfileDetails} alt="Leaf containing profile-details" className="profileDetailsImg" /> */}
                         </div>
                     </article>
                     <article className="profilePosts">
