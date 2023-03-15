@@ -1,20 +1,56 @@
 @import '../../Fonts/_Fonts.scss';
 @import '../../Colors/_Colors.scss';
 
-.profile-container{
+.profile-container {
     height: 100vh;
-    article:first-of-type{
-        display: flex;
-        img{
-            height: 10rem;
-            width: 10rem;
+    article:first-of-type {
+        margin: 4rem 3rem;
+    
+        .profilePicture {
+            display: flex;
+            top: 10rem;
+            height: 15rem;
+            width: 15rem;
+            object-fit: cover;
+            overflow: hidden;
             border-radius: 20rem;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .profileInfo {
+            display: flex;
+            position: relative;
+            top: -18rem;
+            left: 12rem;
+
+            .profileDetails {
+                position: absolute;
+                top: 1rem;
+            }
+            .profileDetailsImg {
+                position: absolute;
+                height: 10rem;
+                top: 0;
+            }
+            .profileBio {
+                position: absolute;
+                top: 5.5rem;
+                left: -1rem;
+            }
+            .profileDetailsImg {
+                position: absolute;
+                top: 5rem;
+                left: -1rem;
+                height: 13rem;  
+            }
         }
     }
-    article:last-of-type{
+
+    .profilePosts {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        img{
+
+        img {
             height: 10rem;
         }
     }
