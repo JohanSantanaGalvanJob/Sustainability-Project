@@ -28,11 +28,14 @@ exports.create = async (req, res) => {
         action: req.body.action,
     };
 
+    console.log(post)
     const categoryItem = await CategoryItem.findByPk(post.categoryitemId);
+    console.log(categoryItem);
     const user = await User.findByPk(post.userId);
+    console.log(user);
 
     const points = categoryItem.points + user.points;
-
+    console.log(points);
     await user.update({ points });
 
     // Save Post in the database
@@ -56,7 +59,7 @@ exports.findAll = (req, res) => {
 
     Post.findAll({
         where: condition,
-        include: [{ model: User, attributes: ['username'] }, { model: CategoryItem, attributes: ['points'] }]
+        include: [{ model: User, attributes: ['username','image'] }, { model: CategoryItem, attributes: ['points'] }]
     })
         .then(data => {
             res.send(data);

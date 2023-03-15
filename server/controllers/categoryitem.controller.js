@@ -23,6 +23,7 @@ exports.create = (req, res) => {
         image: req.file ? req.file.filename : "",
         tags: req.body.tags,
         categoryId: req.body.categoryId,
+        action: req.body.action,
         points: Math.floor(Math.random() * 101), // Genera un número aleatorio entre 0 y 100
     };
 
