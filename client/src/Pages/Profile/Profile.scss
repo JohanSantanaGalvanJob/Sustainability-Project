@@ -1,0 +1,21 @@
+@import '../../Fonts/_Fonts.scss';
+@import '../../Colors/_Colors.scss';
+
+.profile-container{
+    height: 100vh;
+    article:first-of-type{
+        display: flex;
+        img{
+            height: 10rem;
+            width: 10rem;
+            border-radius: 20rem;
+        }
+    }
+    article:last-of-type{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        img{
+            height: 10rem;
+        }
+    }
+}
