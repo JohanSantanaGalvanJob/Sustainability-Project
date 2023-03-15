@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import CategoryItemsService from '../../Services/categoryitems.service'
 
 const ItemPage = ({ isHamburgerOpen }) => {
+    const urlImage = 'http://localhost:8080/public/images/'
     let { id } = useParams();
     let { name } = useParams();
     const [items, setItems] = useState([]);
@@ -25,33 +26,35 @@ const ItemPage = ({ isHamburgerOpen }) => {
     useEffect(() => {
         getCategoryItems();
     }, []);
-console.log(document.getElementsByClassName('popup-container')[0]);
+    console.log(document.getElementsByClassName('popup-container')[0]);
     return (
-        
+
         <section className='item-page-container' onMouseMoveCapture={() => setShowItemPopup(false)}>
             {!isHamburgerOpen ? (<>
                 <h1>{name}</h1>
                 {items.map((categoryItem, index) =>
-                
-                <div className='text-image-container'  onClick={() => setShowItemPopup(true)}>
-                    <img src={stockPhoto} onClick={() => setShowItemPopup(true)}/>
-                    <div>
-                        <span className='item-name-container'>
-                            <h2>{categoryItem.name}</h2>
-                            
-                        </span>
+
+                    <div className='text-image-container' onClick={() => setShowItemPopup(true)}>
+                        <img src={urlImage + categoryItem.image} onClick={() => setShowItemPopup(true)} />
+                        <div>
+                            <span className='item-name-container'>
+                                <h2>{categoryItem.name}</h2>
+
+                            </span>
+                        </div>
                     </div>
-                </div>
-                 )}
+                )}
             </>) : null}
             {showItemPopup ? (
                 <>
-                    <ItemPopup />
+                    {items.map((categoryItem, index) =>
+                        <ItemPopup id={categoryItem.id} />
+                    )}
                 </>
             ) : null}
-           
+
         </section>
-       
+
     )
 }
 
