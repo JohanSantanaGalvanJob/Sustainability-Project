@@ -9,6 +9,11 @@ const get = (id) => {
   return http.get(`/users/${id}`);
 }
 
+const getTopTen = () => {
+  console.log("test")
+  return http.get(`/users/topten`);
+}
+
 const signUp = (data) => {
 
   console.log("todo loco")
@@ -77,6 +82,7 @@ const UserService = {
   get,
   signUp,
   logIn,
+  getTopTen,
   update,
   deleteOne,
   deleteAll,
