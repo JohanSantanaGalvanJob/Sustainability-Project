@@ -66,8 +66,7 @@ try {
                 </div>
             </article>
             <article className="profilePosts">
-<img src={profileImage} alt="test" />
-{!userPosts ? (<>
+{userPosts ? (<>
                 
                 {userPosts.map((post, index) =>
                 
