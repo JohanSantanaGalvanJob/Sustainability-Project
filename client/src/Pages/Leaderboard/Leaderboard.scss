@@ -3,6 +3,43 @@
 @import '../../Colors/_Colors.scss';
 
 
+.leaderboard-container-error{
+    background-color: $brown;
+    font-family: $primary;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    h1 {
+        font-family: $lilita;
+        font-size: 2.4rem;
+        color: $white;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        margin-bottom: 5em ;
+
+    }
+    h2 {
+        font-family: $lilita;
+        font-size: 3rem;
+        color: $white;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        text-align: center;
+    }
+}
+
+.sign-out-btn {
+    background-color: $green;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    color: $white;
+    border: none;
+    font-family: $primary;
+    font-size: 2rem;
+    height: 40px;
+    width: 180px;
+}
+
 
 .leaderboard-container {
     background-color: $brown;
@@ -11,6 +48,13 @@
     h1 {
         font-family: $lilita;
         font-size: 2.4rem;
+        color: $white;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        text-align: center;
+    }
+    h2 {
+        font-family: $lilita;
+        font-size: 1.75rem;
         color: $white;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         text-align: center;

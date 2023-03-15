@@ -7,6 +7,7 @@ import secondPlace from '../../images/2ndplace.svg'
 import thirdPlace from '../../images/3rdplace.svg'
 import userImageTest from '../../images/userImageTest.jpg'
 import UserService from '../../Services/user.service.jsx'
+import { NavLink } from 'react-router-dom'
 
 function Leaderboard() {
 
@@ -31,7 +32,7 @@ function Leaderboard() {
   return (
 
     <>
-      {topTen.length > 0 ?
+      {topTen.length >= 3 ?
         <section className='leaderboard-container'>
           {console.log(topTen)}
           <h1>Leaderboard</h1>
@@ -80,7 +81,14 @@ function Leaderboard() {
           })
           }
         </section >
-        : null}
+        : <section className='leaderboard-container-error'>
+          <h1>Leaderboard</h1>
+          <h2>Nothing to see here</h2>
+          <h2>Maybe because there are not enough users</h2>
+          <NavLink to={'/'}>
+            <button className='sign-out-btn'>Go Back</button>
+          </NavLink>
+        </section>}
 
 
     </>
