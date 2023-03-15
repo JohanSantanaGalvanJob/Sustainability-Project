@@ -74,7 +74,7 @@ function onLogout() {
                         <span className='line'></span>
                     </NavLink> : null}
                 </ul>
-                {sessionStorage.getItem('userId') ? <button onClick={onLogout} className='sign-out-btn'>Sign out</button> : <button onClick={onLogout} className='sign-out-btn'>Sign in</button>}
+                {sessionStorage.getItem('userId') ? <button onClick={onLogout} className='sign-out-btn'>Sign out</button> : <button onClick={onLogout} className='sign-in-btn'>Sign in</button>}
             </motion.nav>
             <nav className='navbar-tablet'>
                 <ul>
