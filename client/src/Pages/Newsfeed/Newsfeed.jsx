@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import CategoryItemsService from '../../Services/categoryitems.service';
 import PostService from '../../Services/post.service';
 import "./Newsfeed.scss"
-import testImage from '../../images/userImageTest.jpg'
 import heartRed from '../../images/heartRed.svg'
+import cameraIcon from '../../images/cameraIcon.svg'
+import heartWhite from '../../images/whiteHeart.svg'
 
 function Newsfeed() {
 
@@ -38,6 +39,11 @@ function Newsfeed() {
   return (
     <section className='newsfeed-container'>
        <h1>Newsfeed</h1>
+       {!sessionStorage.getItem("userId") ?
+        <button className='post-button'>
+          <p>Post your help to <br/> the planet now!</p>
+          <img src={cameraIcon}/>
+        </button>: null}
        {items.posts ? (<>
                 
                 {items.posts.map((post, index) => {
@@ -45,17 +51,19 @@ function Newsfeed() {
                   return (
                 <article key={index}>
                   <div className='user-container'>
-                    <img src={testImage} alt="profile" />
-                    <p>@username</p>
+                    <img src={post.user.image} alt="profile" />
+                    <p>@{post.user.username}</p>
                     </div>
                   <img className='post-image' src={urlImage + post.image}  alt="post image" />
                   <div className='likes-location-container'>
-                    <img src={heartRed}/>
-                    <p>{!post.likes ? 0 : post.likes} Likes</p>
+                    <div className='like-container'>
+                      <img src={heartWhite}/>
+                      <p>{!post.likes ? 0 : post.likes} Likes</p>
+                    </div>
                     <p>📍 @{!post.location ? "Unknown" : post.location}</p> 
                   </div>
                   <div className='points-container'>
-                    <h2> {post.userId == sessionStorage.getItem('userId') ? "You " : post.user.username} just got 120 points</h2> 
+                    <h2> {post.userId == sessionStorage.getItem('userId') ? "You " : post.user.username} just got {post.categoryitem.points} points for {post.categoryitem.action}</h2> 
                   </div>
             </article>
                 )}
