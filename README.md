@@ -286,11 +286,23 @@ Be good is a combination between a game and a social network. The aim is to make
 ## Usage/Examples
 
 ```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
+{items.posts ? (<>
+                
+                {items.posts.map((post, index) =>
+                <article key={index}>
+                <div>
+                  <img src={post.image} alt="profile" />
+                  <div>
+                    
+                  <h2> {post.userId == sessionStorage.getItem('userId') ? "You " : post.user.username} just got 120 points for picking up trash</h2> 
+                  <p>@{!post.location ? "Unknown" : post.location}</p> 
+                  </div>
+                  <img src="" alt="post image" />
+                  <p>{!post.likes ? 0 : post.likes} Likes</p>
+                </div>
+            </article>
+                 ) }
+            </>) : <h2>No posts yet??? </h2>}
 ```
 
 
