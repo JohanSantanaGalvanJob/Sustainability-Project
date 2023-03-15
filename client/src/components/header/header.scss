@@ -15,8 +15,10 @@
         justify-content: space-between;
         font-family: $primary;
         .logo {
-            padding-top: 5px;
-            margin-top: 2px;
+            margin: 5px;
+            max-width: 11rem;
+           
+        
         }
     }  
     .tree-container {
