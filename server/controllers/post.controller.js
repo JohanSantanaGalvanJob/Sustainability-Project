@@ -1,12 +1,13 @@
 const db = require("../models");
 const Post = db.posts;
 const User = db.users;
+const CategoryItem = db.categoryitems;
 const Op = db.Sequelize.Op;
 const fs = require('fs');
 const imagePath = "public/images/"
 
 // Create and Save a new Post
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     console.log("req: ", req.body)
     // Validate request
     if (!req.body.location) {
@@ -22,8 +23,17 @@ exports.create = (req, res) => {
         location: req.body.location,
         image: req.file ? req.file.filename : "",
         userId: req.body.userId,
-        categoryId: req.body.categoryId
+        categoryId: req.body.categoryId,
+        categoryitemId: req.body.categoryitemId,
+        action: req.body.action,
     };
+
+    const categoryItem = await CategoryItem.findByPk(post.categoryitemId);
+    const user = await User.findByPk(post.userId);
+
+    const points = categoryItem.points + user.points;
+
+    await user.update({ points });
 
     // Save Post in the database
     Post.create(post)
@@ -44,9 +54,10 @@ exports.findAll = (req, res) => {
     const userId = req.query.userId;
     var condition = userId ? { userId: { [Op.like]: `%${userId}%` } } : null;
 
-    Post.findAll({ 
+    Post.findAll({
         where: condition,
-        include: [{ model: User, attributes: ['username'] }]  })
+        include: [{ model: User, attributes: ['username'] }, { model: CategoryItem, attributes: ['points'] }]
+    })
         .then(data => {
             res.send(data);
         })
@@ -93,7 +104,8 @@ exports.update = (req, res) => {
             location: req.body.location,
             image: req.file ? req.file.filename : filename,
             userId: req.body.userId,
-            categoryId: req.body.categoryId
+            categoryId: req.body.categoryId,
+            categoryitemId: req.body.categoryitemId
         };
 
         Post.update(post, {

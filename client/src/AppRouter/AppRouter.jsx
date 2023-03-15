@@ -16,14 +16,14 @@ function AppRouter({isHamburgerOpen}) {
   return (
   <div className='pages-container'>
     <Routes>
-          <Route path='/' element={<Newsfeed />}></Route>
+          <Route path='/' element={<SignIn />}></Route>
           <Route path='/signUp' element={<SignUp />}></Route>
           <Route path='/signIn' element={<SignIn />}></Route>
           <Route path='/leaderboard' element={<Leaderboard />}></Route>
           <Route path='/Newsfeed' element={<Newsfeed />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
-          <Route path='*' element={<Newsfeed />}></Route>
+          <Route path='*' element={<NotFound />}></Route>
           <Route path='/itempage/:id/:name' element={<ItemPage isHamburgerOpen={isHamburgerOpen} />}></Route>
     </Routes>
  </div>

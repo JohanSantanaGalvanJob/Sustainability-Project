@@ -16,6 +16,7 @@ console.log("req: ", req.body)
     // Create a Category
     const category = {
         name: req.body.name,
+        image: req.file ? req.file.filename : "",
     };
 
     // Save Category in the database

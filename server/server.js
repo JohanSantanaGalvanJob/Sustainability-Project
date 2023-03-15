@@ -24,9 +24,11 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./models");
 // db.sequelize.sync();
 
-// // db.sequelize.sync({ force: true }).then(() => {
-// //   console.log("Drop and re-sync db.");
-// // });
+app.use("/public", express.static("public"));
+
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 // Middleware that checks if JWT token exists and verifies it if it does exist.
 // In all future routes, this helps to know if the request is authenticated or not.

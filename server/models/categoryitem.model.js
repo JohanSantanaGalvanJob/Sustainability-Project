@@ -15,9 +15,16 @@ module.exports = (sequelize, Sequelize) => {
         tags: {
             type: Sequelize.STRING(100),
         },
+        points: {
+            type: Sequelize.INTEGER,
+            defaultValue: 0
+        },
+        action: {
+            type: Sequelize.STRING(100),
+        },
 
     });
-    
+
 
     return CategoryItem;
 };

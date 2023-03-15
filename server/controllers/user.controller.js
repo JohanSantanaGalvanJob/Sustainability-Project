@@ -84,6 +84,27 @@ exports.findAll = (req, res) => {
         });
 };
 
+// Retrieve all Users from the database.
+exports.topTen = (req, res) => {
+    const username = req.query.username;
+    var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
+
+    User.findAll({ 
+        where: condition,
+        order: [['points', 'DESC']],
+        limit: 10
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        });
+};
+
 // Find a single User with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;

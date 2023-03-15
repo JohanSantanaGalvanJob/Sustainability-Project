@@ -24,6 +24,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         points: {
             type: Sequelize.INTEGER,
+            defaultValue: 0
         },
 
     });
