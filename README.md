@@ -87,8 +87,8 @@ function App() {
 
 ## Authors
 
-- [Stefan](https://www.github.com/octokatherine)
-- [Johan](https://www.github.com/octokatherine)
-- [Katrine](https://www.github.com/octokatherine)
-- [Philip](https://www.github.com/octokatherine)
+- [Stefan](https://github.com/stefansnaerh)
+- [Johan](https://github.com/JohanSantanaGalvanJob)
+- [Katrine](https://github.com/katrinedelrosario)
+- [Philip](https://github.com/Nicekode4)
 
