@@ -59,7 +59,7 @@ exports.findAll = (req, res) => {
 
     Post.findAll({
         where: condition,
-        include: [{ model: User, attributes: ['username','image'] }, { model: CategoryItem, attributes: ['points'] }]
+        include: [{ model: User, attributes: ['username','image'] }, { model: CategoryItem, attributes: ['points','action'] }]
     })
         .then(data => {
             res.send(data);

@@ -3,6 +3,9 @@ import "./PostPopup.scss"
 function PostPopup() {
     sessionStorage.setItem('categoryId',2)
     sessionStorage.setItem('categoryitemId',3)
+
+    
+
   return (
     <div id="myModal" class="modal">
 

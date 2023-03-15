@@ -51,7 +51,7 @@ function Newsfeed() {
                   return (
                 <article key={index}>
                   <div className='user-container'>
-                    <img src={post.user.image} alt="profile" />
+                    <img src={urlImage + post.user.image} alt="profile" />
                     <p>@{post.user.username}</p>
                     </div>
                   <img className='post-image' src={urlImage + post.image}  alt="post image" />
