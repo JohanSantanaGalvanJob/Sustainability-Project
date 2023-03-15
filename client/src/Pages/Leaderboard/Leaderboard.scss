@@ -77,10 +77,12 @@
         .first-place-image {
             position: absolute;
             z-index: 81;
-            height: 90px;
+            height: 105px;
+            width: 100px;
             border-radius: 50%;
-            left: 53px;
+            left: 50px;
             top: 10px;
+            object-fit: cover;
         }
         .points-container {
            position: absolute;
@@ -125,6 +127,7 @@
             .second-place-image {
                 border-radius: 50%;
                 height: 82px;
+                width: 82px;
                 position: absolute;
                 z-index: 81;
                 right: 0;
@@ -165,6 +168,8 @@
             img {
                 border-radius: 50%;
                 height: 50px;
+                width: 50px;
+
             }
             p {
                 color: $white;
