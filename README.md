@@ -52,27 +52,47 @@ Be good is a combination between a game and a social network. The aim is to make
 #### Get all items
 
 ```http
-  GET /api/items
+  GET /users
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
 
 #### Get item
 
 ```http
-  GET /api/items/${id}
+  GET /users/${id}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `string` | **Required**. Id of user to fetch |
 
-#### add(num1, num2)
+#### Create user
 
-Takes two numbers and returns the sum.
+```http
+  POST /users
+```
 
+| Parameter | Type     | Description                                   |
+| :-------- | :------- | :---------------------------------------------|
+| `username`      | `string` | **Required**. Username of the user      |
+| `email`         | `string` | **Required**. Email of the user         |
+| `password`      | `string` | **Required**. Password of the user      |
+| `birthdate`     | `Date` | **Required**. Date of birth of the user   |
+| `image`         | `string` | **Required**. An image                  |
+
+#### Update user
+
+```http
+  POST /users/${id}
+```
+
+| Parameter | Type     | Description                             |
+| :-------- | :------- | :---------------------------------------|
+| `id`            | `string` | **Required**. Id of user to fetch |
+| `username`      | `string` | Username of the user              |
+| `email`         | `string` | Email of the user                 |
+| `password`      | `string` | Password of the user              |
+| `birthdate`     | `Date`   | Date of birth of the user         |
+| `image`         | `string` | An image                          |
 
 ## Usage/Examples
 
