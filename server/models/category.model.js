@@ -4,6 +4,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(20),
             allowNull: false,
         },
+        image: {
+            type: Sequelize.STRING(100),
+            allowNull: false,
+        },
     });
 
     return Category;

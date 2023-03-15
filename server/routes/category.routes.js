@@ -1,10 +1,11 @@
 module.exports = app => {
     const categories = require("../controllers/category.controller.js");
+    var upload = require('../multer/upload');
   
     var router = require("express").Router();
   
     // Create a new User
-    router.post("/", categories.create);
+    router.post("/",upload.single('image'), categories.create);
   
     // Retrieve all categories
     router.get("/", categories.findAll);
