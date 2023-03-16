@@ -29,12 +29,13 @@ exports.create = async (req, res) => {
     };
 
     console.log(post)
-    const categoryItem = await CategoryItem.findByPk(post.categoryitemId);
+    const categoryItem =  CategoryItem.findByPk(post.categoryitemId);
     console.log(categoryItem);
     const user = await User.findByPk(post.userId);
     console.log(user);
+    var points = categoryItem.points + user.points;
+    
 
-    const points = categoryItem.points + user.points;
     console.log(points);
     await user.update({ points });
 
@@ -59,7 +60,7 @@ exports.findAll = (req, res) => {
 
     Post.findAll({
         where: condition,
-        include: [{ model: User, attributes: ['username','image'] }, { model: CategoryItem, attributes: ['points','action'] }]
+        include: [{ model: User, attributes: ['username', 'image'] }, { model: CategoryItem, attributes: ['points', 'action'] }]
     })
         .then(data => {
             res.send(data);
@@ -95,18 +96,18 @@ exports.findOne = (req, res) => {
 
 exports.findByUser = (req, res) => {
     const userId = req.params.userId;
-  
-    Post.findAll({ where: {userId: userId} })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving Posts."
+
+    Post.findAll({ where: { userId: userId } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Posts."
+            });
         });
-      });
-  };
+};
 
 // Update a Post by the id in the request
 exports.update = (req, res) => {

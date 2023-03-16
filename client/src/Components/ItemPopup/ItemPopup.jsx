@@ -11,6 +11,7 @@ import PostPopup from '../PostPopup/PostPopup'
 
 const ItemPopup = (props) => {
 
+  console.log(props)
   const [categoryItem, setCategoryItem] = useState([]);
   const [showPostPopup, setShowPostPopup] = useState(false)
   let { id } = props;
