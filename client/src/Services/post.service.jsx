@@ -13,11 +13,10 @@ const get = (id) => {
 const create = (data) => {
   console.log("todo loco")
   console.log(data)
-  let userId = sessionStorage.getItem('userId')
 
   let form = new FormData();
   form.append('location', (data.location));
-  form.append('userId', userId);
+  form.append('userId', data.userId);
   form.append('categoryId', data.categoryId);
   form.append('username', (data.username));
   form.append('password', (data.password));
