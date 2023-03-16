@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CategoryService from '../../Services/category.service';
+import CategoryItemsService from '../../Services/categoryitems.service';
 import PostService from '../../Services/post.service';
 import "./PostPopup.scss"
 
@@ -16,6 +17,7 @@ function PostPopup() {
   const [imgSrc, setImgSrc] = useState("https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg");
   const [post, setPost] = useState(initialPostState);
   const [categories, setCategories] = useState([]);
+  const [categoryItems, setCategoryItems] = useState([]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -98,9 +100,27 @@ function PostPopup() {
     })
   }
 
+  const getCategoryitems = (categoryId) => {
+    CategoryItemsService.getByCategory(categoryId)
+      .then((response) => {
+        console.log(response.data);
+        setCategoryItems(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   useEffect(() => {
     getCategories();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    if (post.categoryId) {
+      getCategoryitems(post.categoryId);
+    }
+  }, [post.categoryId]);
+
 
   return (
     <div id="myModal" class="modal">
@@ -119,9 +139,9 @@ function PostPopup() {
 
           <select className="form-control" name="categoryitemId" type="text" onChange={handleInputChange} required>
             <option value="2" selected>Type a Category Item</option>
-            {categories &&
-              categories.map((category, index) => (
-                <option value={category.id} key={index}>{category.name}</option>
+            {categoryItems &&
+              categoryItems.map((categoryItem, index) => (
+                <option value={categoryItem.id} key={index}>{categoryItem.name}</option>
               ))
             }
           </select>
