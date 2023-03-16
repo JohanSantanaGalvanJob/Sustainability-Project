@@ -3,57 +3,82 @@
 
 .profile-container {
     height: 100vh;
-    article:first-of-type {
-        margin: 4rem 3rem;
-    
-        .profilePicture {
-            display: flex;
-            top: 10rem;
-            height: 15rem;
-            width: 15rem;
-            object-fit: cover;
-            overflow: hidden;
-            border-radius: 20rem;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: $primary;
+    color: $white;
+    gap: 8rem;
+    .profilePosts {
+        display: flex;
+        width: clamp(30rem, 34rem, 85%);
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        .post-image {
+            border-radius: 10px;
+            height: 100px;
+            width: 140px;
         }
-
-        .profileInfo {
-            display: flex;
+    }
+        .about-user-container{
             position: relative;
-            top: -18rem;
-            left: 12rem;
-
-            .profileDetails {
+            margin-top: 3rem;
+            width: clamp(30rem, 32rem, 80%);
+            .profilePicture {
+                height: 160px;
+                width: 160px;
+                object-fit: cover;
+                overflow: hidden;
+                border-radius: 50%;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            }
+            .profileBioImg {
                 position: absolute;
-                top: 1rem;
+                right: -10px;
+                top: 80px;
             }
             .profileDetailsImg {
                 position: absolute;
-                height: 10rem;
-                top: 0;
-                z-index: 0;
+                top: -10px;
+                right: 5px;
+                height: 130px;
+                z-index: 6;
             }
             .profileBio {
                 position: absolute;
-                top: 5.5rem;
-                left: -1rem;
-                
+                top: 108px;
+                right: 28px;
+                font-size: 1.4rem;
+                width: 120px;
+                text-align: center;
             }
-            .profileDetailsImg {
+            .user-info-container {
                 position: absolute;
-                top: 5rem;
-                left: -1rem;
-                height: 13rem;  
-                z-index: 1;
+                z-index: 99;
+                top: 16px;
+                right: 35px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .username {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    margin-bottom: 0;
+                }
+                .points {
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    margin-top: 5px;
+                }
             }
+            
         }
+
+       
+        
+
+    
     }
 
-    .profilePosts {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        img {
-            height: 10rem;
-        }
-    }
-}
+    

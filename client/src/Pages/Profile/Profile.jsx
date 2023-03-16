@@ -47,28 +47,32 @@ const Profile = () => {
     // }
     return (
         <>
-        {/* {console.log(user)} */}
             {!!user ?
-           
+
                 <section className="profile-container">
-                   
-                    <article>
+                    <div className="about-user-container">
                         <img src={urlImage + user.image} alt="profile picture" className="profilePicture" />
-                        <div className="profileInfo">
-                            <p className="profileBio">{user.username}</p>
-                            <p>{user.email}</p>
-                            <p className="profileDetails">{user.points} points</p>
-                            {/* <img src={leafProfileBio} alt="Leaf containing profile-bio" className="profileBioImg" />
-                            <img src={leafProfileDetails} alt="Leaf containing profile-details" className="profileDetailsImg" /> */}
+                        <img src={leafProfileBio} alt="Leaf containing profile-bio" className="profileBioImg" />
+                        <img src={leafProfileDetails} alt="Leaf containing profile-details" className="profileDetailsImg" />
+                        <p className="profileBio">Do something drastic, cut the plastic!</p>
+                        <div className="user-info-container ">
+                            <p className="username"> @{user.username}</p>
+                            <p className="points">{user.points} points</p>
                         </div>
-                    </article>
+                    </div> 
                     <article className="profilePosts">
+                    <img src={postImage} alt="profile" className="post-image" />
+                    <img src={postImage} alt="profile" className="post-image" />
+                    <img src={postImage} alt="profile" className="post-image" />
+                    <img src={postImage} alt="profile" className="post-image" />
+      
+
                         {/* {userPosts ? (<>
 
             {userPosts.map((post, index) =>
 
 
-                <img src={post.image} alt="profile" />
+                <img src={post.image} alt="profile" className="post-image" />
 
             )}
         </>) : <h2> No posts yet </h2>} */}
