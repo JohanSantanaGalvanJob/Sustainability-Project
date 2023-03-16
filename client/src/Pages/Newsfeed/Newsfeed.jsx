@@ -39,7 +39,6 @@ function Newsfeed() {
        
 
     }, []);
-    console.log(items);
   return (
     <section className='newsfeed-container'>
        <h1>Newsfeed</h1>
@@ -51,7 +50,7 @@ function Newsfeed() {
        {items.posts ? (<>
                 
                 {items.posts.map((post, index) => {
-                  console.log(post)
+                  
                   return (
                 <article key={index}>
                   <div className='user-container'>
