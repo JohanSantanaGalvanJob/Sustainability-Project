@@ -59,9 +59,11 @@ function SignUp() {
       birthdate: event.target.birthdate?.value
     }
     let hasError = false
-    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+    let strongPassword = new RegExp('^[a-zA-Z0-9_]{6,}$')
+    console.log(strongPassword)
     if(!strongPassword.test(params.password)){
       setWrongPassword(true)
+      console.log("hello world")
       hasError = true
     }
 
@@ -75,8 +77,8 @@ function SignUp() {
       setWrongUsername(true)
       hasError = true
     }
-    let checkEmail = new RegExp('^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$')
-    if(!params.email){
+    let checkEmail = new RegExp('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}')
+    if(!checkEmail.test(params.email)){
       setWrongEmail(true)
       hasError = true
     }
@@ -132,10 +134,10 @@ function SignUp() {
           {wrongEmail ? (<p className='error-text'>Must include email</p>) : null}
           <label htmlFor='password'>Password</label>
           <input 
-            style={wrongPassword ? {border : "3px solid #D60606", background: "#FFDBDB" }: null} type='password' name='password' 
+            style={wrongPassword ? {border : "3px solid #D60606", background: "#FFDBDB" }: null} type="password" name='password' 
             onSubmit={handleInputChange} placeholder='Please enter your password'>
             </input>
-            {wrongPassword ? (<p className='error-text'>Password must contain at least 8 characters, numbers, capital letters and lower case letters</p>) : null}
+            {wrongPassword ? (<p className='error-text'>Password must contain at least 6 characters, numbers, capital letters and lower case letters</p>) : null}
           <label htmlFor='birthdate'>Birth Date</label>
           <input type='date' name='birthdate' 
             style={noBirthday ? {border : "3px solid #D60606", background: "#FFDBDB" }: null}
