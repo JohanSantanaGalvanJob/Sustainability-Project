@@ -4,28 +4,61 @@ import './ItemPopup.scss'
 import stockphoto from '../../images/restaurantStockphoto.jpg'
 import taskTree from '../../images/taskTree.svg'
 import pointsLeaf from '../../images/pointsLeaf.svg'
+import { useEffect, useState } from 'react'
+import CategoryItemsService from '../../Services/categoryitems.service'
 
-const ItemPopup = () => {
-    return (
+import PostPopup from '../PostPopup/PostPopup'
+
+const ItemPopup = (props) => {
+
+  console.log(props)
+  const [categoryItem, setCategoryItem] = useState([]);
+  const [showPostPopup, setShowPostPopup] = useState(false)
+  let { id } = props;
+  const urlImage = 'http://localhost:8080/public/images/'
+
+  const getCatItem = () => {
+    CategoryItemsService.get(id).then((response) => {
+      setCategoryItem(response.data);
+      console.log(response.data)
+    }).catch((e) => {
+      console.log(e);
+    })
+  }
+
+  useEffect(() => {
+    getCatItem();
+  }, []);
+
+  return (
+    <>
+      {!!categoryItem ?
         <section className='popup-container'>
-            <p className='bee-good'>Be Good at..</p>
-            <h1>Inagua Integral Nature Reserve</h1>
-            <img className='item-photo' alt='attraction' src={stockphoto}/>
-            <img 
+          {console.log(categoryItem)}
+          <p className='bee-good'>Be Good at..</p>
+          <h1>{categoryItem.name}</h1>
+          <img className='item-photo' alt='attraction' src={urlImage + categoryItem.image} />
+          <img
             alt='BY DOING THIS TASK YOU ARE HELPING THE WORLD BY SUPPORTING THESE UN WOLRD GOALS >'
-            className='task-tree' 
+            className='task-tree'
             src={taskTree}
-            />
+          />
           <div className='points-leaf-container'>
-            <p>30p</p>
+            <p>{categoryItem.points}p</p>
           </div>
           <div className='location-info-button-container'>
             <p>Location</p>
-            <p>No plastic. Theyre cups are 100% re- cycleable. Healthy</p>
+            <p>{categoryItem.tags}</p>
           </div>
-          <button>Post your efforts</button>
+          {sessionStorage.getItem('userId') ? <button onClick={() => setShowPostPopup(true)}>Post your efforts</button> : null}
         </section>
-    )
+        : null}
+        {showPostPopup ? (
+          <PostPopup
+          setShowPostPopup={setShowPostPopup}/>
+        ): null}
+    </>
+  )
 }
 
 export default ItemPopup

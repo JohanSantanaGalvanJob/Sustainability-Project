@@ -36,4 +36,10 @@ db.posts.belongsTo(db.users);
 db.categories.hasMany(db.categoryitems);
 db.categoryitems.belongsTo(db.categories);
 
+// One Category Item has many Posts, but only one specific Post belongs to one Category Item
+db.categoryitems.hasMany(db.posts);
+db.posts.belongsTo(db.categoryitems);
+
+// One Category Item can be used by many Users, but only one specific User can put one Category Item.
+
 module.exports = db;

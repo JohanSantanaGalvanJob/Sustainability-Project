@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 // images
 import navdirt from '../../images/navdirt.svg'
 import navdirtTablet from '../../images/navdirtTablet.svg'
-import tree2 from '../../images/tree2.svg'
-import tree1 from '../../images/tree1.svg'
-import tree3 from '../../images/tree3.svg'
-import logo from '../../images/logo.svg'
+import tree3 from '../../images/tree3.png'
+import tree1 from '../../images/tree1.png'
+import tree2 from '../../images/tree2.png'
+import logo from '../../images/logo.png'
 import homeIcon from '../../images/iconHome.svg'
 import categoryIcon from '../../images/iconCategory.svg'
 import userIcon from '../../images/iconUser.svg'
@@ -66,15 +66,15 @@ function onLogout() {
                         </div>
                         <span className='line'></span>
                     </NavLink>
-                    <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
+                    {sessionStorage.getItem('userId') ? <NavLink onClick={() => (setIsHamburgerOpen(false))} to="profile">
                         <div className='icon-text-container'>
                             <img alt='home icon' src={userIcon}/>
                             <li>Profile</li>
                         </div>
                         <span className='line'></span>
-                    </NavLink>
+                    </NavLink> : null}
                 </ul>
-                <button onClick={onLogout} className='sign-out-btn'>Sign out</button>
+                {sessionStorage.getItem('userId') ? <button onClick={onLogout} className='sign-out-btn'>Sign out</button> : <button onClick={onLogout} className='sign-in-btn'>Sign in</button>}
             </motion.nav>
             <nav className='navbar-tablet'>
                 <ul>

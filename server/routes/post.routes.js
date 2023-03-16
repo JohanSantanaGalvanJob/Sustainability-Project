@@ -13,7 +13,7 @@ module.exports = app => {
     router.get("/", posts.findAll);
   
     // Retrieve all published Posts
-    router.get("/published", posts.findAllPublished);
+    router.get("/users/:userId", posts.findByUser);
   
     // Retrieve a single Post with id
     router.get("/:id", posts.findOne);

@@ -11,10 +11,14 @@
     font-family: $primary;
     display: flex;
     flex-direction: column;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
     .bee-good {
         color: $sunYellow;
         font-size: 1.4rem;
-        font-weight: 800;
+        font-weight: 400;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         margin-bottom: 0;
         padding-left: 1.2rem;
@@ -22,11 +26,12 @@
     h1 {
         font-size: 2rem;
         height: fit-content;
-        font-weight: 800;
+        font-weight: 400;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         margin-top: 0;
         padding-left: 1.2rem;
         padding-right: 1.2rem;
+        color: $white;
     }
     .item-photo {
         width: 100%;
@@ -49,7 +54,7 @@
             p{
                 color: $white;
                 font-size: 1.4rem;
-                font-weight: 700;
+                font-weight: 400;
             }
     }
     .location-info-button-container {
@@ -57,7 +62,7 @@
         p {
             color: $white;
             font-size: 1.5rem;
-            font-weight: 500;
+            font-weight: 400;
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
     }

@@ -13,24 +13,21 @@ const get = (id) => {
 const create = (data) => {
   console.log("todo loco")
   console.log(data)
-  let userId = sessionStorage.getItem('userId')
 
   let form = new FormData();
   form.append('location', (data.location));
-  form.append('userId', userId);
+  form.append('userId', data.userId);
   form.append('categoryId', data.categoryId);
-  form.append('username', (data.username));
-  form.append('password', (data.password));
-  form.append('email', data.email);
-  form.append('birthdate', data.birthdate);
+  form.append('categoryitemId', (data.categoryitemId));
   form.append('image', data.image);
 
 
   var config = {
     method: 'post',
-    url: 'http://' + window.location.hostname + ':8080/users',
+    url: 'http://' + window.location.hostname + ':8080/posts',
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      'Authorization': sessionStorage.getItem('token')
     },
     data: form
   };
@@ -51,8 +48,8 @@ const deleteAll = () => {
   return http.delete(`/posts`);
 }
 
-const findByTitle = (title) => {
-  return http.get(`/posts?title=${title}`);
+const getByUser = (userId) =>  {
+  return http.get(`/posts/users/${userId}`);
 }
 
 const PostService = {
@@ -62,6 +59,7 @@ const PostService = {
   update,
   deleteOne,
   deleteAll,
+  getByUser,
 }
 
 export default PostService;

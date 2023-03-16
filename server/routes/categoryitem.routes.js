@@ -10,7 +10,7 @@ module.exports = app => {
     // Retrieve all Category Items
     router.get("/", categoryitems.findAll);
 
-    router.get("/:categoryId", categoryitems.findByCategory);
+    router.get("/category/:categoryId", categoryitems.findByCategory);
   
     // Retrieve a single Category Item with id
     router.get("/:id", categoryitems.findOne);
