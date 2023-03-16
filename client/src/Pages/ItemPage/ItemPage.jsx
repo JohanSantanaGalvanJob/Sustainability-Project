@@ -21,39 +21,45 @@ const ItemPage = ({ isHamburgerOpen }) => {
         });
     }
 
+    const setStates = (pop) =>{
+        setShowItemPopup(pop)
+        setBlackOut(pop)
+    }
+
     const [showItemPopup, setShowItemPopup] = useState(false)
+    const [blackOut,setBlackOut] = useState(false);
 
     useEffect(() => {
         getCategoryItems();
     }, []);
     console.log(document.getElementsByClassName('popup-container')[0]);
     return (
-
-        <section className='item-page-container' onMouseMoveCapture={() => setShowItemPopup(false)}>
-            {!isHamburgerOpen ? (<>
-                <h1>{name}</h1>
-                {items.map((categoryItem, index) =>
-
-                    <div className='text-image-container' onClick={() => setShowItemPopup(true)}>
-                        <img src={urlImage + categoryItem.image} onClick={() => setShowItemPopup(true)} />
-                        <div>
-                            <span className='item-name-container'>
-                                <h2>{categoryItem.name}</h2>
-
-                            </span>
-                        </div>
-                    </div>
-                )}
-            </>) : null}
-            {showItemPopup ? (
-                <>
+        < >
+            <section className={showItemPopup? "for-blackout item-page-container": "item-page-container"} onMouseMoveCapture={() => setStates(false)}>
+                {!isHamburgerOpen ? (<>
+                    <h1>{name}</h1>
                     {items.map((categoryItem, index) =>
-                        <ItemPopup id={categoryItem.id} />
-                    )}
-                </>
-            ) : null}
 
-        </section>
+                        <div className='text-image-container' onClick={() => setStates(true)}>
+                            <img src={urlImage + categoryItem.image} onClick={() => setShowItemPopup(true)} />
+                            <div>
+                                <span className='item-name-container'>
+                                    <h2>{categoryItem.name}</h2>
+
+                                </span>
+                            </div>
+                        </div>
+                    )}
+                </>) : null}
+            </section>
+            {showItemPopup ? (
+                    <>
+                        {items.map((categoryItem, index) =>
+                            <ItemPopup id={categoryItem.id} />
+                        )}
+                    </>
+                ) : null}
+        </>
 
     )
 }

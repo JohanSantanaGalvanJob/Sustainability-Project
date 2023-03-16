@@ -53,7 +53,7 @@ const deleteAll = () => {
 }
 
 const getByUser = (userId) =>  {
-  return http.get(`/categoryitems/users/${userId}`);
+  return http.get(`/posts/users/${userId}`);
 }
 
 const PostService = {

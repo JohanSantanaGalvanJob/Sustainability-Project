@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./PostPopup.scss"
+
 function PostPopup() {
-    sessionStorage.setItem('categoryId',2)
-    sessionStorage.setItem('categoryitemId',3)
+    const initialPostState = {
+      id: null,
+      username: "",
+      email: "",
+      image: "",
+      password: "",
+      birthdate: undefined,
+    };
+
+    const [post,setPost] = useState([])
 
     
 
@@ -10,7 +19,7 @@ function PostPopup() {
     <div id="myModal" class="modal">
 
   <div class="modal-content">
-    <form action="http://localhost:8080/posts" method="post">
+    <form >
        
         <select name="location" id="">
             <option value="Las palmas">las palmas</option>

@@ -12,6 +12,7 @@ const Profile = () => {
 
     let userId = sessionStorage.getItem('userId');
     const [user, setUser] = useState([]);
+    const [posts, setPosts] = useState([]);
     const urlImage = 'http://localhost:8080/public/images/'
 
     const getProfile = () => {
@@ -21,30 +22,23 @@ const Profile = () => {
         }).catch((e) => {
             console.log(e)
         });
-        // PostService.getAll().then((response) => {
-        //     setItems({ ...items, posts: response.data, userData: userDatas })
-        //     console.log(items);
-        // }).catch((e) => {
-        //     console.log(e)
-        // });
+
+    }
+
+    const getPostsByUser = () => {
+        PostService.getByUser(userId).then((response) => {
+            setPosts(response.data);
+            console.log(response.data);
+        }).catch((e) => {
+            console.log(e)
+        });
 
     }
 
     useEffect(() => {
         getProfile();
+        getPostsByUser();
     }, []);
-    // try {
-    //     for (let index = 0; index < items.posts.length; index++) {
-    //         const element = items.posts[index];
-    //         if (element.userId == sessionStorage.getItem('userId')) {
-    //             userPosts.push(element)
-    //             console.log(element);
-    //         }
-
-    //     }
-    // } catch (error) {
-
-    // }
     return (
         <>
             {!!user ?
@@ -61,21 +55,15 @@ const Profile = () => {
                         </div>
                     </div> 
                     <article className="profilePosts">
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-      
+                        {posts ? (<>
 
-                        {/* {userPosts ? (<>
-
-            {userPosts.map((post, index) =>
+                            {posts.map((post, index) =>
 
 
-                <img src={post.image} alt="profile" className="post-image" />
+                                <img src={ urlImage + post.image} alt="profile" className="post-image" />
 
-            )}
-        </>) : <h2> No posts yet </h2>} */}
+                            )}
+                        </>) : <h2> No posts yet </h2>}
                     </article>
                 </section>
 
