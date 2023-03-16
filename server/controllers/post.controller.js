@@ -93,6 +93,21 @@ exports.findOne = (req, res) => {
         });
 };
 
+exports.findByUser = (req, res) => {
+    const userId = req.params.userId;
+  
+    Post.findAll({ where: {userId: userId} })
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving Posts."
+        });
+      });
+  };
+
 // Update a Post by the id in the request
 exports.update = (req, res) => {
 

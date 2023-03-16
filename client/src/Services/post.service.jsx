@@ -52,8 +52,8 @@ const deleteAll = () => {
   return http.delete(`/posts`);
 }
 
-const findByTitle = (title) => {
-  return http.get(`/posts?title=${title}`);
+const getByUser = (userId) =>  {
+  return http.get(`/categoryitems/users/${userId}`);
 }
 
 const PostService = {
@@ -63,6 +63,7 @@ const PostService = {
   update,
   deleteOne,
   deleteAll,
+  getByUser,
 }
 
 export default PostService;
