@@ -1,34 +1,78 @@
-#myModal{
-    display: block;
+@import '../../Fonts/_Fonts.scss';
+@import '../../Colors/_Colors.scss';
+
+
+
+
     .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      position: absolute;
+      z-index: 1; /* Sit on top */
+      width: 34rem;
+      height: 34rem;
+      overflow: auto; /* Enable scroll if needed */
+      border-radius: 5px;
+      background-color: #fefefe;
+      top: 100px;
+      left: 0; 
+      right: 0; 
+      margin-left: auto; 
+      margin-right: auto; 
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: $primary;
+      h1 {
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
       }
-      
-      /* Modal Content */
-      .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        margin: auto;
-        padding: 0;
-        border: 1px solid #888;
-        width: 80%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-        -webkit-animation-name: animatetop;
-        -webkit-animation-duration: 0.4s;
-        animation-name: animatetop;
-        animation-duration: 0.4s
+      form {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        width: 24rem;
+        
+        select {
+          background-color: #f1f1f1;
+          border-radius: 5px;
+          border: 1px solid #ABABAB;
+          height: 30px;
+          font-family: $primary;
+          text-align: center;
+        }
+        .image-container {
+          display: flex;
+          justify-content: space-around;
+          input {
+            width: px;
+          }
+        }
+        label {
+          color: #000;
+        }
+        button {
+          width: 20rem;
+          align-self: center;
+          border: none;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 8px;
+          color: $white;
+          font-family: $primary;
+          font-size: 1.6rem;
+          height: 3rem;
+        }
+        .post {
+          margin-top: 3rem;
+          background-color: #53A548;
+        }
+        .cancel {
+          background-color: #FF4048;
+        }
       }
-      
+    }
       /* Add Animation */
       @-webkit-keyframes animatetop {
         from {top:-300px; opacity:0} 
@@ -68,4 +112,3 @@
         background-color: #5cb85c;
         color: white;
       }
-}

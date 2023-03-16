@@ -6,9 +6,13 @@ import heartRed from '../../images/heartRed.svg'
 import cameraIcon from '../../images/cameraIcon.svg'
 import heartWhite from '../../images/whiteHeart.svg'
 
+import PostPopup from '../../Components/PostPopup/PostPopup';
+
 function Newsfeed() {
 
   const urlImage = 'http://localhost:8080/public/images/'
+
+  const [showPostPopup, setShowPostPopup] = useState(false)
 
 
   let postData;
@@ -39,8 +43,8 @@ function Newsfeed() {
   return (
     <section className='newsfeed-container'>
        <h1>Newsfeed</h1>
-       {!sessionStorage.getItem("userId") ?
-        <button className='post-button'>
+       {sessionStorage.getItem("userId") ?
+        <button className='post-button' onClick={() => {setShowPostPopup(true)}}>
           <p>Post your help to <br/> the planet now!</p>
           <img src={cameraIcon}/>
         </button>: null}
@@ -69,6 +73,10 @@ function Newsfeed() {
                 )}
                  ) }
             </>) : <h2>No posts yet??? </h2>}
+            {showPostPopup ? (
+              <PostPopup
+              setShowPostPopup={setShowPostPopup}/>
+            ): null}
 
     </section>
   )

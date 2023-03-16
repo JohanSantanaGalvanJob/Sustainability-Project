@@ -7,9 +7,12 @@ import pointsLeaf from '../../images/pointsLeaf.svg'
 import { useEffect, useState } from 'react'
 import CategoryItemsService from '../../Services/categoryitems.service'
 
+import PostPopup from '../PostPopup/PostPopup'
+
 const ItemPopup = (props) => {
 
   const [categoryItem, setCategoryItem] = useState([]);
+  const [showPostPopup, setShowPostPopup] = useState(false)
   let { id } = props;
   const urlImage = 'http://localhost:8080/public/images/'
 
@@ -46,9 +49,13 @@ const ItemPopup = (props) => {
             <p>Location</p>
             <p>{categoryItem.tags}</p>
           </div>
-          {sessionStorage.getItem('userId') ? <button>Post your efforts</button> : null}
+          {sessionStorage.getItem('userId') ? <button onClick={() => setShowPostPopup(true)}>Post your efforts</button> : null}
         </section>
         : null}
+        {showPostPopup ? (
+          <PostPopup
+          setShowPostPopup={setShowPostPopup}/>
+        ): null}
     </>
   )
 }
