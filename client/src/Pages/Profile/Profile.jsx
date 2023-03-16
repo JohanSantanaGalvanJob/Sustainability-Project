@@ -65,11 +65,7 @@ const Profile = () => {
                     <img src={postImage} alt="profile" className="post-image" />
                     <img src={postImage} alt="profile" className="post-image" />
                     <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
-                    <img src={postImage} alt="profile" className="post-image" />
+      
 
                         {/* {userPosts ? (<>
 
