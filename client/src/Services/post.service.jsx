@@ -27,7 +27,7 @@ const create = (data) => {
 
   var config = {
     method: 'post',
-    url: 'http://' + window.location.hostname + ':8080/users',
+    url: 'http://' + window.location.hostname + ':8080/posts',
     headers: {
       'Content-Type': 'multipart/form-data',
       'Authorization': sessionStorage.getItem('token')
