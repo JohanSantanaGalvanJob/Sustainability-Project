@@ -22,7 +22,9 @@ exports.create = (req, res) => {
         type: req.body.type,
         image: req.file ? req.file.filename : "",
         tags: req.body.tags,
-        categoryId: req.body.categoryId
+        categoryId: req.body.categoryId,
+        action: req.body.action,
+        points: Math.floor(Math.random() * 101), // Genera un número aleatorio entre 0 y 100
     };
 
     // Save Category Item in the database

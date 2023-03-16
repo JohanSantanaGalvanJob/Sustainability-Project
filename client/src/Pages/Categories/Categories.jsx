@@ -10,6 +10,8 @@ const Categories = () => {
     const [categories, setCategories] = useState([])
     const navigator = useNavigate();
 
+    const urlImage = 'http://localhost:8080/public/images/'
+
     const getCategories = () => {
         CategoryService.getAll().then(response => {
             setCategories(response.data);
@@ -27,16 +29,19 @@ const Categories = () => {
     return (
         <section className="category-container">
             <h1>Categories</h1>
-            {categories.map((category, index) =>
-
+            {categories.map((category, index) =>{
+             return (
                 <NavLink to={`/itempage/${category.id}/${category.name}`}>
-                    <article>
-                        <h2>{category.name}</h2>
+                    <article >
+                        <img src={urlImage + category.image}/>
+                        <div className="item-name-container">
+                            <h2>{category.name}</h2>
+                        </div>  
                     </article>
                 </NavLink>
 
-
-
+             )
+            }
             )}
         </section>
     )

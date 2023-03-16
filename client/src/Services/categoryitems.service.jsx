@@ -9,7 +9,7 @@ import http from "../http-common";
   }
 
   const getByCategory = (categoryId) =>  {
-    return http.get(`/categoryitems/${categoryId}`);
+    return http.get(`/categoryitems/category/${categoryId}`);
   }
 
   const create = (data) =>  {

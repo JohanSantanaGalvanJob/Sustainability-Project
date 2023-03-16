@@ -1,12 +1,13 @@
 const db = require("../models");
 const Post = db.posts;
 const User = db.users;
+const CategoryItem = db.categoryitems;
 const Op = db.Sequelize.Op;
 const fs = require('fs');
 const imagePath = "public/images/"
 
 // Create and Save a new Post
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     console.log("req: ", req.body)
     // Validate request
     if (!req.body.location) {
@@ -22,8 +23,20 @@ exports.create = (req, res) => {
         location: req.body.location,
         image: req.file ? req.file.filename : "",
         userId: req.body.userId,
-        categoryId: req.body.categoryId
+        categoryId: req.body.categoryId,
+        categoryitemId: req.body.categoryitemId,
+        action: req.body.action,
     };
+
+    console.log(post)
+    const categoryItem = await CategoryItem.findByPk(post.categoryitemId);
+    console.log(categoryItem);
+    const user = await User.findByPk(post.userId);
+    console.log(user);
+
+    const points = categoryItem.points + user.points;
+    console.log(points);
+    await user.update({ points });
 
     // Save Post in the database
     Post.create(post)
@@ -44,9 +57,10 @@ exports.findAll = (req, res) => {
     const userId = req.query.userId;
     var condition = userId ? { userId: { [Op.like]: `%${userId}%` } } : null;
 
-    Post.findAll({ 
+    Post.findAll({
         where: condition,
-        include: [{ model: User, attributes: ['username'] }]  })
+        include: [{ model: User, attributes: ['username','image'] }, { model: CategoryItem, attributes: ['points','action'] }]
+    })
         .then(data => {
             res.send(data);
         })
@@ -79,6 +93,21 @@ exports.findOne = (req, res) => {
         });
 };
 
+exports.findByUser = (req, res) => {
+    const userId = req.params.userId;
+  
+    Post.findAll({ where: {userId: userId} })
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving Posts."
+        });
+      });
+  };
+
 // Update a Post by the id in the request
 exports.update = (req, res) => {
 
@@ -93,7 +122,8 @@ exports.update = (req, res) => {
             location: req.body.location,
             image: req.file ? req.file.filename : filename,
             userId: req.body.userId,
-            categoryId: req.body.categoryId
+            categoryId: req.body.categoryId,
+            categoryitemId: req.body.categoryitemId
         };
 
         Post.update(post, {
