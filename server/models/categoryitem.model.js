@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const CategoryItem = sequelize.define("categoryitem", {
         name: {
-            type: Sequelize.STRING(45),
+            type: Sequelize.STRING(100),
             allowNull: false,
         },
         type: {
