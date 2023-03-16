@@ -58,29 +58,38 @@ function SignUp() {
       password: event.target.password?.value,
       birthdate: event.target.birthdate?.value
     }
-
-    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+    let hasError = false
+    let strongPassword = new RegExp('^[a-zA-Z0-9_]{6,}$')
+    console.log(strongPassword)
     if(!strongPassword.test(params.password)){
       setWrongPassword(true)
+      console.log("hello world")
+      hasError = true
     }
 
     if(!params.image){
       setNoImage(true)
+      hasError = true
     }
 
     let testUsername = new RegExp('^[a-zA-Z0-9_]{6,}$')
     if(!testUsername.test(params.username)){
       setWrongUsername(true)
+      hasError = true
     }
-
-    if(!params.email){
+    let checkEmail = new RegExp('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}')
+    if(!checkEmail.test(params.email)){
       setWrongEmail(true)
+      hasError = true
     }
     if(!params.birthdate){
       setNoBirthday(true)
+      hasError = true
     }
-
-
+    if (hasError){
+      return
+    }
+    
     UserService.signUp(params).then((response) => {
       console.log(response);
       console.log(response.data);
@@ -94,6 +103,7 @@ function SignUp() {
     }).catch(e => {
       console.log(e);
     });
+  
 
   }
 
@@ -111,31 +121,31 @@ function SignUp() {
           <label htmlFor='username'>Username</label>
           <input 
             style={wrongUsername? {border : "3px solid #D60606", background: "#FFDBDB" }: null}  
-            type='text' name='username' pattern="^[a-zA-Z0-9_]{6,}$"
+            type='text' name='username'
             onSubmit={handleInputChange} placeholder='Please enter your username'>
           </input>
           {wrongUsername ? (<p className='error-text'>Username must include 6 characters and no special ones</p>) : null}
           <label htmlFor='email'>Email</label>
           <input 
-            type='email' name='email' 
+             name='email' 
             style={wrongEmail? {border : "3px solid #D60606", background: "#FFDBDB" }: null} 
-            onSubmit={handleInputChange} placeholder='Please enter your email'>
+            onSubmit={handleInputChange} placeholder='Must be a valid email address'>
           </input>
           {wrongEmail ? (<p className='error-text'>Must include email</p>) : null}
           <label htmlFor='password'>Password</label>
           <input 
-            style={wrongPassword ? {border : "3px solid #D60606", background: "#FFDBDB" }: null} type='password' name='password' 
+            style={wrongPassword ? {border : "3px solid #D60606", background: "#FFDBDB" }: null} type="password" name='password' 
             onSubmit={handleInputChange} placeholder='Please enter your password'>
             </input>
-            {wrongPassword ? (<p className='error-text'>Password must contain at least 8 characters, numbers, capital letters and lower case letters</p>) : null}
+            {wrongPassword ? (<p className='error-text'>Password must contain at least 6 characters, numbers, capital letters and lower case letters</p>) : null}
           <label htmlFor='birthdate'>Birth Date</label>
           <input type='date' name='birthdate' 
             style={noBirthday ? {border : "3px solid #D60606", background: "#FFDBDB" }: null}
             onSubmit={handleInputChange} placeholder='Please enter your birth date'>
           </input>
           {noBirthday ? (<p className='error-text'>Must include birthdate</p>) : null}
-          <button 
-            disabled={wrongPassword && noImage && wrongUsername && wrongEmail && noBirthday} 
+          <button
+            disabled={wrongPassword && noImage && wrongUsername && wrongEmail && noBirthday}
             type='submit' className='submit-btn'>Sign Up!
           </button>
         </form>

@@ -30,7 +30,8 @@ const create = (data) => {
     method: 'post',
     url: 'http://' + window.location.hostname + ':8080/users',
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      'Authorization': sessionStorage.getItem('token')
     },
     data: form
   };
@@ -51,8 +52,8 @@ const deleteAll = () => {
   return http.delete(`/posts`);
 }
 
-const findByTitle = (title) => {
-  return http.get(`/posts?title=${title}`);
+const getByUser = (userId) =>  {
+  return http.get(`/posts/users/${userId}`);
 }
 
 const PostService = {
@@ -62,6 +63,7 @@ const PostService = {
   update,
   deleteOne,
   deleteAll,
+  getByUser,
 }
 
 export default PostService;
